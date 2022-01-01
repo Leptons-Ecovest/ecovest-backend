@@ -4,7 +4,7 @@
 
 <p>
     Hi, {{ $data['name'] }} <br>
-    Congratulations. Welcome to Medicsetal. <br>
+    Congratulations. Welcome to Leptons. <br>
 
 </p>
 

@@ -1,8 +1,8 @@
 <tr>
 <td class="header">
 <a href="{{ $url }}" style="display: inline-block;">
-@if (trim($slot) === 'Phoenixgn')
-<img src="https://edu.medicsetal.org/wp-content/uploads/2021/12/medicsetal-logo-2-removebg-preview-296x201.png" class="logo" alt="Phoenixgn Logo">
+@if (trim($slot) === 'Leptons')
+<img src="https://leptonsmulticoncept.com/wp-content/uploads/fbrfg/apple-touch-icon.png" class="logo" alt="Phoenixgn Logo">
 @else
 {{ $slot }}
 @endif

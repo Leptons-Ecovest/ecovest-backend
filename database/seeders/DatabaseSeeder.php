@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
         UserSeeder::class,
+        BuildingProjectSeeder::class,
         // PhoenixgnPackagesSeeder::class,
         // FAQSeeder::class,
         ]);

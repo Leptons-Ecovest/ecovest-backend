@@ -3,7 +3,7 @@
 <h3> Hello {{$data['name']}}, </h3>
 
 <p>
-    Welcome to Phoenixgn, use the OTP below to verify your email.
+    Welcome to Leptons, use the OTP below to verify your email.
 </p>
   
     
