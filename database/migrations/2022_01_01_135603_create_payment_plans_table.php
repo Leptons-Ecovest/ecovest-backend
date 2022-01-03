@@ -18,8 +18,9 @@ class CreatePaymentPlansTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('building_project_id')->unsigned();
             $table->date('start_date');
+            $table->integer('duration');
             $table->date('end_date');
-            $table->string('status');
+            $table->string('status')->default('active');
             $table->string('description')->nullable();
             $table->integer('total_amount');
             $table->foreign('user_id')->references('id')->on('users');

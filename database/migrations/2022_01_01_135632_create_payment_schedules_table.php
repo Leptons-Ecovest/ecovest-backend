@@ -15,9 +15,9 @@ class CreatePaymentSchedulesTable extends Migration
     {
         Schema::create('payment_schedules', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('payment_schedules_id')->unsigned();
+            $table->bigInteger('payment_plans_id')->unsigned();
 
-            $table->date('payment_date');
+            $table->date('payment_due_date');
 
             $table->integer('expected_amount');
             $table->integer('amount_paid');
@@ -26,7 +26,7 @@ class CreatePaymentSchedulesTable extends Migration
 
             $table->string('color_code')->default('secondary');
 
-            $table->foreign('payment_schedules_id')->references('id')->on('users');
+            $table->foreign('payment_plans_id')->references('id')->on('payment_plans');
             $table->timestamps();
         });
     }

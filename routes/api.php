@@ -8,6 +8,11 @@ use App\Http\Controllers\RTVRSEnumerationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\UserWalletController;
+use App\Http\Controllers\PaymentPlanController;
+use App\Http\Controllers\BuildingProjectController;
+
+
+
 
 
 
@@ -52,6 +57,10 @@ Route::get('/wallet_balance', [UserWalletController::class, 'wallet_balance'])->
 
 
 Route::post('/create_enumeration', [RTVRSEnumerationController::class, 'create_enumeration']);
+
+Route::post('/create_payment_plan', [PaymentPlanController::class, 'create_payment_plan'])->middleware('auth:sanctum');
+
+Route::get('/building_projects', [BuildingProjectController::class, 'building_projects']);
 
 
 

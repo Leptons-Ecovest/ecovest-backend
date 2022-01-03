@@ -16,7 +16,13 @@ class CreateBuildingProjectsTable extends Migration
         Schema::create('building_projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('description');
+            $table->string('location');
+            $table->string('apartment_size');
+            $table->string('payment_plan');
+            $table->string('property_price');
+            $table->longText('facilities');
+            $table->longText('estate_facilities')->nullable();
+            $table->integer('duration')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });
