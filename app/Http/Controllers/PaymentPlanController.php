@@ -106,6 +106,28 @@ class PaymentPlanController extends Controller
         return response()->json([
             'payment_plan' => $payment_plan,
 
-]);
+        ]);
+    }
+
+    public function payment_plans(Request $request)
+    {
+        # code...
+
+
+        // return $request->user();
+
+        // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
+
+        $payment_plan = PaymentPlan::with('payment_schedules')->where('user_id', $request->user()->id)->first();
+
+
+
+
+        return response()->json([
+            'payment_plan' => $payment_plan,
+
+        ]);
+
+
     }
 }

@@ -63,5 +63,10 @@ Route::post('/create_payment_plan', [PaymentPlanController::class, 'create_payme
 Route::get('/building_projects', [BuildingProjectController::class, 'building_projects']);
 
 
+Route::get('/payment_plans', [PaymentPlanController::class, 'payment_plans'])->middleware('auth:sanctum');;
+
+
+
+
 
 
