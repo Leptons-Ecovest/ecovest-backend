@@ -24,6 +24,7 @@ class CreateBuildingProjectsTable extends Migration
             $table->longText('estate_facilities')->nullable();
             $table->integer('duration')->nullable();
             $table->string('status')->default('active');
+            $table->string('featured_image')->nullable();
             $table->timestamps();
         });
     }

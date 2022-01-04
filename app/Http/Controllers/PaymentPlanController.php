@@ -10,6 +10,8 @@ use App\Models\PaymentSchedule;
 
 use App\Models\BuildingProject;
 
+use App\Models\User;
+
 use Carbon\Carbon;
 
 class PaymentPlanController extends Controller
@@ -20,18 +22,21 @@ class PaymentPlanController extends Controller
     {
         # code...
 
+        $project = BuildingProject::where('title', $request->building_project_title)->first();
+
+        $user = User::where('email', $request->subscribers_email)->first();
 
 
         try {
             //code...
 
-            $building_project = BuildingProject::find($request->building_project_id);
+            $building_project = BuildingProject::find($project->id);
 
        
 
             $payment_plan = PaymentPlan::create([
-                'user_id' => $request->user()->id,
-                'building_project_id' => $request->building_project_id,
+                'user_id' => $user->id,
+                'building_project_id' => $project->id,
                 'start_date' => $request->start_date,
                 'duration' => $building_project->duration,
                 'end_date' => Carbon::parse($request->start_date)->addMonth($building_project->duration),
@@ -69,7 +74,7 @@ class PaymentPlanController extends Controller
     
             }
 
-            return $payment_schedule;
+            // return $payment_schedule;
     
             
 
