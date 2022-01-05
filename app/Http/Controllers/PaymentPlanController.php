@@ -14,6 +14,10 @@ use App\Models\User;
 
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\PlanCreated;
+
 class PaymentPlanController extends Controller
 {
     //
@@ -96,9 +100,20 @@ class PaymentPlanController extends Controller
         // 20
         // 10
 
-
-
-
+        try {
+            //code...
+            $datax = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'project_title' => $project->title
+            ];
+                Mail::to($user->email)
+                ->send(new PlanCreated($datax));
+                
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
 
 
 
