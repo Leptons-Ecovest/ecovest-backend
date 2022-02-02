@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Ticket;
 
-use App\Models\TicketUpload;
+use App\Models\TicketUploads;
 
 
 
@@ -74,53 +74,63 @@ class TicketController extends Controller
         # code...
         // unique user tickets
 
-        if ($request->user()->role == 'role') {
-            # code...
+        // return $request->user()->role;
 
-            $tickets = Ticket::with('attachments')->where('user_id', $request->user()->id)->latest()->get();
-        
-        
-        }if ($request->user()->role == 'admin') {
-            # code...
+        try {
+            //code...
 
-            $tickets = Ticket::with('attachments')->latest()->get();
+            if ($request->user()->role == 'user') {
+                # code...
+    
+                $tickets = Ticket::with('attachments')->where('user_id', $request->user()->id)->latest()->get();
+            
+            
+            }if ($request->user()->role == 'admin') {
+                # code...
+    
+                $tickets = Ticket::with('attachments')->latest()->get();
+            }
+    
+    
+    
+                    if ($request->type) {
+                        # code...
+                        
+                        if ($request->type == 'open') {
+                            # code...
+    
+                            $tickets->where('status', 'open');
+    
+                            return $tickets;
+                        }
+    
+                        if ($request->type == 'answered') {
+                            # code...
+    
+                            $tickets->where('status', 'answered');
+    
+                            return $tickets;
+                        }
+    
+                        if ($request->type == 'closed') {
+                            # code...
+    
+                            $tickets->where('status', 'closed');
+    
+                            return $tickets;
+                        }
+    
+    
+    
+                    }else{
+    
+                        return $tickets;
+                    }
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return $th;
         }
-
-
-
-                if ($request->type) {
-                    # code...
-                    
-                    if ($request->type == 'open') {
-                        # code...
-
-                        $tickets->where('status', 'open')->latest()->get();
-
-                        return $tickets;
-                    }
-
-                    if ($request->type == 'answered') {
-                        # code...
-
-                        $tickets->where('status', 'answered')->latest()->get();
-
-                        return $tickets;
-                    }
-
-                    if ($request->type == 'closed') {
-                        # code...
-
-                        $tickets->where('status', 'closed')->latest()->get();
-
-                        return $tickets;
-                    }
-
-
-
-                }else{
-
-                    return $tickets;
-                }
 
     }
 

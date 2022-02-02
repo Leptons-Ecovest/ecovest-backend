@@ -10,4 +10,11 @@ class Ticket extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function attachments()
+    {
+        
+        
+        return $this->hasMany('App\Models\TicketUploads', 'ticket_id');
+    }
 }
