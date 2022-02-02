@@ -10,14 +10,8 @@ use App\Http\Controllers\FAQController;
 use App\Http\Controllers\UserWalletController;
 use App\Http\Controllers\PaymentPlanController;
 use App\Http\Controllers\BuildingProjectController;
-
-
-
-
-
-
-
-
+use App\Http\Controllers\NewUpdateController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +59,16 @@ Route::get('/building_projects', [BuildingProjectController::class, 'building_pr
 Route::post('/create_project', [BuildingProjectController::class, 'create_project']);
 
 
-Route::get('/payment_plans', [PaymentPlanController::class, 'payment_plans'])->middleware('auth:sanctum');;
+Route::get('/payment_plans', [PaymentPlanController::class, 'payment_plans'])->middleware('auth:sanctum');
+
+Route::post('/notify_new_update', [NewUpdateController::class, 'notify_new_update']);
+
+
+Route::post('/tickets', [TicketController::class, 'create_ticket'])->middleware('auth:sanctum');
+
+Route::get('/tickets', [TicketController::class, 'get_tickets'])->middleware('auth:sanctum');
+
+Route::put('/tickets', [TicketController::class, 'update_ticket'])->middleware('auth:sanctum');
 
 
 
