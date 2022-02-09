@@ -52,4 +52,12 @@ class User extends Authenticatable
         
         return $this->hasMany('App\Models\DirectReferral', 'referrer_id', 'id');
     }
+
+    public function profile()
+    {
+        # code...
+
+
+        return $this->hasOne(User::class);
+    }
 }

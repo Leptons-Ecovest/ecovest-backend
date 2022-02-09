@@ -12,6 +12,9 @@ use App\Http\Controllers\PaymentPlanController;
 use App\Http\Controllers\BuildingProjectController;
 use App\Http\Controllers\NewUpdateController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserProfileController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +27,9 @@ use App\Http\Controllers\TicketController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post('/register', [ApiAuthController::class, 'register']);
 
@@ -56,6 +59,10 @@ Route::post('/create_payment_plan', [PaymentPlanController::class, 'create_payme
 
 Route::get('/building_projects', [BuildingProjectController::class, 'building_projects']);
 
+Route::post('/deactivate_project', [BuildingProjectController::class, 'deactivate_project'])->middleware('auth:sanctum');
+
+Route::post('/activate_project', [BuildingProjectController::class, 'activate_project'])->middleware('auth:sanctum');
+
 Route::post('/create_project', [BuildingProjectController::class, 'create_project']);
 
 
@@ -69,6 +76,11 @@ Route::post('/tickets', [TicketController::class, 'create_ticket'])->middleware(
 Route::get('/tickets', [TicketController::class, 'get_tickets'])->middleware('auth:sanctum');
 
 Route::put('/tickets', [TicketController::class, 'update_ticket'])->middleware('auth:sanctum');
+
+
+Route::get('/users', [UserProfileController::class, 'users'])->middleware('auth:sanctum');
+
+
 
 
 

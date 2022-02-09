@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Models\UserProfile;
 
+use App\Models\User;
+
+
+
 class UserProfileController extends Controller
 {
     //
@@ -32,10 +36,26 @@ class UserProfileController extends Controller
         
 
 
-        return response()->json([
-            'access_token' => $profile,
+                return response()->json([
+                    'access_token' => $profile,
+                
+        ]);
+    }
+
+
+    public function users(Request $request)
+    {
         
-]);
+
+        if ($request->user()->role == 'admin') {
+            # code...
+
+            $users = User::latest()->get();
+
+                
+            return $users;
+        }
+
     }
 
 

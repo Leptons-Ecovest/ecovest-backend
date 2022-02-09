@@ -28,7 +28,13 @@ class BuildingProjectController extends Controller
     {
         # code...
 
-        $building_project = BuildingProject::create([
+        $doc = $request->file('featured_image');
+        $new_name = rand().".".$doc->getClientOriginalExtension();
+        $file1 = $doc->move(public_path('featured_images'), $new_name);
+
+        $building_project = BuildingProject::updateOrCreate([
+            'title' => $request->title,
+        ],[
             'title' => $request->title,
             'location' => $request->location,
             'apartment_size' => $request->apartment_size,
@@ -37,6 +43,7 @@ class BuildingProjectController extends Controller
             'facilities' => $request->facilities,
             'estate_facilities' => $request->estate_facilities,
             'duration' => $request->duration,
+            'featured_image' => config('app.url').'featured_images/'.$new_name
         ]);
 
         return response()->json([
@@ -45,5 +52,65 @@ class BuildingProjectController extends Controller
         ]);
 
 
+    }
+
+    public function deactivate_project(Request $request)
+    {
+        # code...
+
+        if ($request->user()->role == 'admin') {
+            # code...
+
+           try {
+               //code...
+
+               $removed = BuildingProject::find($request->building_project_id)->update([
+                   'status' => 'inactive'
+               ]);
+
+               return $removed;
+
+           } catch (\Throwable $th) {
+               //throw $th;
+
+               return $th;
+           }
+
+        }else{
+
+            return $response= [
+                'message' => null
+            ];
+        }
+    }
+
+    public function activate_project(Request $request)
+    {
+        # code...
+
+        if ($request->user()->role == 'admin') {
+            # code...
+
+           try {
+               //code...
+
+               $removed = BuildingProject::find($request->building_project_id)->update([
+                   'status' => 'active'
+               ]);
+
+               return $removed;
+
+           } catch (\Throwable $th) {
+               //throw $th;
+
+               return $th;
+           }
+
+        }else{
+
+            return $response= [
+                'message' => null
+            ];
+        }
     }
 }

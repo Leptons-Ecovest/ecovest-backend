@@ -79,6 +79,8 @@ class TicketController extends Controller
         try {
             //code...
 
+        
+
             if ($request->user()->role == 'user') {
                 # code...
     
