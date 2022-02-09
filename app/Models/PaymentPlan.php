@@ -18,4 +18,14 @@ class PaymentPlan extends Model
         return $this->hasMany('App\Models\PaymentSchedule','payment_plans_id', 'id');
 
     }
+
+    public function building_project()
+    {
+        return $this->belongsTo(BuildingProject::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

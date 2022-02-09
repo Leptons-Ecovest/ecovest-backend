@@ -129,19 +129,33 @@ class PaymentPlanController extends Controller
         # code...
 
 
-        // return $request->user();
+        if ($request->user()->role == 'admin') {
+            # code...
 
-        // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
+            $payment_plans = PaymentPlan::with('building_project')->with('payment_schedules')->with('user')->get();
 
-        $payment_plan = PaymentPlan::with('payment_schedules')->where('user_id', $request->user()->id)->first();
+            return $payment_plans;
+
+        }else {
+            # code...
+
+                    // return $request->user();
+
+                // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
+
+                $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->first();
 
 
 
 
-        return response()->json([
-            'payment_plan' => $payment_plan,
+                return response()->json([
+                    'payment_plan' => $payment_plan,
 
-        ]);
+                ]);
+        }
+
+
+
 
 
     }
