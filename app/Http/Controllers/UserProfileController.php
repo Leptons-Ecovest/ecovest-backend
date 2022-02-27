@@ -14,6 +14,8 @@ class UserProfileController extends Controller
 {
     //
 
+
+
     public function get_profiles(Request $request)
     {
         # code...
@@ -48,38 +50,53 @@ class UserProfileController extends Controller
     {
 
 
-        try {
-            //code...
+        if ($request->type == 'avatar') {
+            # code...
 
-            $profile = UserProfile::updateOrCreate([
-                'user_id' => $request->user()->id
-            ],[
-            'residential_address' => $request->residential_address,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'nok_name' => $request->nok_name,
-            'nok_email' => $request->nok_email,
-            'nok_address' => $request->nok_address,
-            'nin' => $request->nin,
-            'dob' => $request->dob,
-            'nok_phone' => $request->nok_phone,
-            'bank_code' => $request->bank_code,
-            'bank_name' => $request->bank_name,
-            'auth_code' => $request->auth_code,
-            'account_name' => $request->account_name,
-            'account_no' => $request->account_no,
+            $doc = $request->file('avatar');
+            $new_name = rand().".".$doc->getClientOriginalExtension();
+            $doc->move(public_path('avatars'), $new_name);
 
-        ]);
-        
+            $avatar = User::where('id',$request->user()->id)->update([
+                'avatar' => config('app.url').'avatars/'.$new_name
+            ]);
 
 
-        return $profile;
-
-
-        } catch (\Throwable $th) {
-            //throw $th;
-
-            return $th;
+            return $avatar;
+        }else{
+            try {
+                //code...
+    
+                $profile = UserProfile::updateOrCreate([
+                    'user_id' => $request->user()->id
+                ],[
+                'residential_address' => $request->residential_address,
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'nok_name' => $request->nok_name,
+                'nok_email' => $request->nok_email,
+                'nok_address' => $request->nok_address,
+                'nin' => $request->nin,
+                'dob' => $request->dob,
+                'nok_phone' => $request->nok_phone,
+                'bank_code' => $request->bank_code,
+                'bank_name' => $request->bank_name,
+                'auth_code' => $request->auth_code,
+                'account_name' => $request->account_name,
+                'account_no' => $request->account_no,
+    
+            ]);
+            
+    
+    
+            return $profile;
+    
+    
+            } catch (\Throwable $th) {
+                //throw $th;
+    
+                return $th;
+            }
         }
                 
  
@@ -93,7 +110,7 @@ class UserProfileController extends Controller
         if ($request->user()->role == 'admin') {
             # code...
 
-            $users = User::latest()->get();
+            $users = User::with('profile')->latest()->get();
 
                 
             return $users;
