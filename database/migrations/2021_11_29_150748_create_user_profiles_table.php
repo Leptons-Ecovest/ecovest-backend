@@ -21,8 +21,14 @@ class CreateUserProfilesTable extends Migration
             $table->string('gender')->nullable();
             
             $table->string('nok_name')->nullable();
-            $table->string('nok_address')->nullable();
+            $table->string('nok_email')->nullable();
             $table->string('nok_phone')->nullable();
+            $table->string('nok_address')->nullable();
+
+            $table->string('nin')->nullable();
+            $table->string('dob')->nullable();
+            
+
             $table->string('bank_code')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('auth_code')->nullable();
@@ -34,6 +40,10 @@ class CreateUserProfilesTable extends Migration
             $table->timestamps();
         });
     }
+
+
+
+
 
     /**
      * Reverse the migrations.

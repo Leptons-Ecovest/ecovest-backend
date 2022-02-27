@@ -57,7 +57,6 @@ class User extends Authenticatable
     {
         # code...
 
-
-        return $this->hasOne(User::class);
+        return $this->hasOne(UserProfile::class);
     }
 }
