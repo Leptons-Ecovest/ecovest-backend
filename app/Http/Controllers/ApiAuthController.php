@@ -101,6 +101,10 @@ class ApiAuthController extends Controller
         // try {
             //code...
 
+            try {
+                //code...
+
+                
             Mail::to($user->email)
             ->send(new Welcome($datax));
 
@@ -108,6 +112,12 @@ class ApiAuthController extends Controller
 
             Mail::to($user->email)
             ->send(new EmailVerification($datax));
+
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                
+            }
 
 
 

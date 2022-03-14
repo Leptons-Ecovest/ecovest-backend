@@ -13,6 +13,9 @@ use App\Http\Controllers\BuildingProjectController;
 use App\Http\Controllers\NewUpdateController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\PaymentScheduleController;
+
+
 
 
 
@@ -84,6 +87,8 @@ Route::get('/users', [UserProfileController::class, 'users'])->middleware('auth:
 Route::get('/profiles', [UserProfileController::class, 'get_profiles'])->middleware('auth:sanctum');
 
 Route::post('/profiles', [UserProfileController::class, 'update_profile'])->middleware('auth:sanctum');
+
+Route::post('/update_payment_plan', [PaymentScheduleController::class, 'update_payment_plan'])->middleware('auth:sanctum');
 
 
 

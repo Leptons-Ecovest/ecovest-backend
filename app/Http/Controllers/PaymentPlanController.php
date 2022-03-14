@@ -145,11 +145,14 @@ class PaymentPlanController extends Controller
 
                 $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->first();
 
+                $unpaid_schedules = PaymentSchedule::where('payment_plans_id', $payment_plan->id)->where('amount_paid','0' )->get();
+
 
 
 
                 return response()->json([
                     'payment_plan' => $payment_plan,
+                    'unpaid_schedules' => $unpaid_schedules
 
                 ]);
         }
