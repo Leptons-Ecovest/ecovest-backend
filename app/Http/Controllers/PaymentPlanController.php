@@ -12,6 +12,8 @@ use App\Models\BuildingProject;
 
 use App\Models\User;
 
+use App\Models\Notification;
+
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;
@@ -77,6 +79,12 @@ class PaymentPlanController extends Controller
                 $month_no += 3;
     
             }
+
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => 'New Projected Created',
+                'message' => 'Your project has been created with description: ' .$request->description.'.'
+            ]);
 
             // return $payment_schedule;
     

@@ -87,9 +87,9 @@ class ApiAuthController extends Controller
         // ]);
 
         $notification = Notification::create([
-            'performed_by' => $user->id,
+            'user_id' => $user->id,
             'title' => "New Signup",
-            'log' => 'You just signed up welcome to Leptons'
+            'message' => 'You just signed up welcome to Leptons'
         ]);
 
         $datax = [

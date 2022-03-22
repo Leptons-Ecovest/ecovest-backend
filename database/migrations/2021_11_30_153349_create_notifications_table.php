@@ -15,15 +15,14 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('performed_by')->unsigned();
-            $table->string('type')->default('unique');
-            $table->string('status')->default('unread');
-            $table->string('title');
-            $table->string('log');
-            $table->bigInteger('performed_to')->unsigned()->nullable();
 
-            $table->foreign('performed_by')->references('id')->on('users');
-            $table->foreign('performed_to')->references('id')->on('users');
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('type')->default('unique');
+            $table->boolean('read')->default(1);
+            $table->string('title');
+            $table->string('message');
+            
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

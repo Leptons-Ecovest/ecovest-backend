@@ -14,6 +14,8 @@ use App\Http\Controllers\NewUpdateController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PaymentScheduleController;
+use App\Http\Controllers\NotificationController;
+
 
 
 
@@ -83,6 +85,8 @@ Route::put('/tickets', [TicketController::class, 'update_ticket'])->middleware('
 
 
 Route::get('/users', [UserProfileController::class, 'users'])->middleware('auth:sanctum');
+
+Route::get('/notifications', [NotificationController::class, 'notifications'])->middleware('auth:sanctum');
 
 Route::get('/profiles', [UserProfileController::class, 'get_profiles'])->middleware('auth:sanctum');
 
