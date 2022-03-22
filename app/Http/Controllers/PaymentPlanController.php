@@ -139,22 +139,30 @@ class PaymentPlanController extends Controller
         }else {
             # code...
 
+            try {
+                //code...
+                
                     // return $request->user();
 
                 // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
 
-                $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->first();
+                $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->get();
 
-                $unpaid_schedules = PaymentSchedule::where('payment_plans_id', $payment_plan->id)->where('amount_paid','0' )->get();
+                // $unpaid_schedules = PaymentSchedule::where('payment_plans_id', $payment_plan->id)->where('amount_paid','0' )->get();
 
 
 
 
                 return response()->json([
                     'payment_plan' => $payment_plan,
-                    'unpaid_schedules' => $unpaid_schedules
+                    // 'unpaid_schedules' => $unpaid_schedules
 
                 ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
+            }
         }
 
 
