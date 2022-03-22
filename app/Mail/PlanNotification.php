@@ -7,23 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PlanCreated extends Mailable
+class PlanNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data, $payments)
+    public function __construct($data)
     {
         //
 
         $this->data = $data;
-
-        $this->payments = $payments;
 
     }
 
@@ -34,9 +31,8 @@ class PlanCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.plan-created',[
+        return $this->markdown('mails.plansmail',[
             'data' => $this->data,
-            'payments' => $this->payments,
             
         ]);
     }

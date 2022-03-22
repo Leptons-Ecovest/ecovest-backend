@@ -13,6 +13,8 @@ class BuildingProjectController extends Controller
     public function building_projects()
     {
 
+     
+
 
 
         $building_projects = BuildingProject::latest()->get();

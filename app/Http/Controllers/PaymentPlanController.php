@@ -86,7 +86,23 @@ class PaymentPlanController extends Controller
                 'message' => 'Your project has been created with description: ' .$request->description.'.'
             ]);
 
-            // return $payment_schedule;
+            $payments = PaymentSchedule::where('payment_plans_id', $payment_plan->id)->latest()->get();
+            // return $payments;
+            
+
+                  //code...
+                  $datax = [
+                    'description' => $request->description,
+    
+                    'project_title' => $project->title,
+    
+                    'name' => $user->name,
+
+                    
+    
+                ];
+                    Mail::to($user->email)
+                    ->send(new PlanCreated($datax, $payments));
     
             
 
@@ -109,14 +125,7 @@ class PaymentPlanController extends Controller
         // 10
 
         try {
-            //code...
-            $datax = [
-                'name' => $user->name,
-                'email' => $user->email,
-                'project_title' => $project->title
-            ];
-                Mail::to($user->email)
-                ->send(new PlanCreated($datax));
+     
                 
         } catch (\Throwable $th) {
             //throw $th;
