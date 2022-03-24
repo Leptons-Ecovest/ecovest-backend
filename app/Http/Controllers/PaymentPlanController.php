@@ -193,4 +193,17 @@ class PaymentPlanController extends Controller
 
 
     }
+
+    public function send_reminders(Request $request)
+    {
+        # code...
+
+
+        
+    }
+
+
+
+
+
 }
