@@ -18,6 +18,8 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;
 
+use App\Mail\PaymentReminder;
+
 use App\Mail\PlanCreated;
 
 class PaymentPlanController extends Controller
@@ -198,8 +200,82 @@ class PaymentPlanController extends Controller
     {
         # code...
 
+     
+            
 
-        
+            $schedules30 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(30), now()->addDays(31) ])->get();
+
+            $schedules21 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(21), now()->addDays(22) ])->get();
+
+            $schedules14 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(14), now()->addDays(15) ])->get();
+
+            $schedules7 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(7), now()->addDays(8) ])->get();
+
+            $schedules3 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(3), now()->addDays(4) ])->get();
+
+            $schedules1 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            ->whereBetween('payment_due_date', [now()->addDays(1), now()->addDays(2) ])->get();
+            
+            
+            
+            // return $schedules1;
+
+            foreach ($schedules30 as $schedule1) {
+                # code...
+
+                
+
+                try {
+                    //code...
+
+                    $datax =[
+                        'name' => $schedule1->payment_plan->user->name,
+                        'title' => $schedule1->payment_plan->building_project->title,
+                        'location' => $schedule1->payment_plan->building_project->location,
+                        'description' => $schedule1->payment_plan->description,
+                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'payment_date' => $schedule1->payment_due_date,
+                        'expected_amount' => $schedule1->expected_amount,
+                        'due_date' => 'A days time'
+    
+                    ];
+    
+                    Mail::to($schedule1->payment_plan->user->email)
+                    ->send(new PaymentReminder($datax));
+
+
+                    return 'sent';
+    
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+                    return $th;
+                }
+
+               
+                // try {
+                //     //code...
+                // } catch (\Throwable $th) {
+                //     //throw $th;
+                // }
+            }
+
+            // return $schedulex=[
+            //     'schedules1' => $schedules1,
+            //     'schedules3' => $schedules3,
+            //     'schedules7' => $schedules7,
+            //     'schedules14' => $schedules14,
+            //     'schedules21' => $schedules21,
+            //     'schedules30' => $schedules30
+            // ];
+
+
+
     }
 
 

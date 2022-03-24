@@ -4,6 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use App\Models\PaymentPlan;
+
+use App\Models\PaymentSchedule;
+
+use App\Models\User;
+
 class SendReminder extends Command
 {
     /**

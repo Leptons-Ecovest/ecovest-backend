@@ -94,7 +94,7 @@ Route::post('/profiles', [UserProfileController::class, 'update_profile'])->midd
 
 Route::post('/update_payment_plan', [PaymentScheduleController::class, 'update_payment_plan'])->middleware('auth:sanctum');
 
-
+Route::post('/send_reminders', [PaymentPlanController::class, 'send_reminders']);
 
 
 
