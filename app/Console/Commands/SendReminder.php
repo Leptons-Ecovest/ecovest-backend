@@ -10,6 +10,9 @@ use App\Models\PaymentSchedule;
 
 use App\Models\User;
 
+
+use Illuminate\Support\Facades\Http;
+
 class SendReminder extends Command
 {
     /**
@@ -43,6 +46,9 @@ class SendReminder extends Command
      */
     public function handle()
     {
-        return 123;
+
+        $response = Http::post(config('app.url').'api/send_reminders');
+
+        return dd($response);
     }
 }

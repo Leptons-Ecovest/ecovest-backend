@@ -221,11 +221,170 @@ class PaymentPlanController extends Controller
             $schedules1 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(1), now()->addDays(2) ])->get();
             
-            
-            
+                      
             // return $schedules1;
 
             foreach ($schedules1 as $schedule1) {
+                # code...
+
+                
+
+                try {
+                    //code...
+
+                    $datax =[
+                        'name' => $schedule1->payment_plan->user->name,
+                        'title' => $schedule1->payment_plan->building_project->title,
+                        'location' => $schedule1->payment_plan->building_project->location,
+                        'description' => $schedule1->payment_plan->description,
+                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'payment_date' => $schedule1->payment_due_date,
+                        'expected_amount' => $schedule1->expected_amount,
+                        'due_date' => 'A days time'
+    
+                    ];
+    
+                    Mail::to($schedule1->payment_plan->user->email)
+                    ->send(new PaymentReminder($datax));
+
+
+                    return 'sent';
+    
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+                    return $th;
+                }
+
+               
+                // try {
+                //     //code...
+                // } catch (\Throwable $th) {
+                //     //throw $th;
+                // }
+            }
+
+            foreach ($schedules3 as $schedule1) {
+                # code...
+
+                
+
+                try {
+                    //code...
+
+                    $datax =[
+                        'name' => $schedule1->payment_plan->user->name,
+                        'title' => $schedule1->payment_plan->building_project->title,
+                        'location' => $schedule1->payment_plan->building_project->location,
+                        'description' => $schedule1->payment_plan->description,
+                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'payment_date' => $schedule1->payment_due_date,
+                        'expected_amount' => $schedule1->expected_amount,
+                        'due_date' => 'A days time'
+    
+                    ];
+    
+                    Mail::to($schedule1->payment_plan->user->email)
+                    ->send(new PaymentReminder($datax));
+
+
+                    return 'sent';
+    
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+                    return $th;
+                }
+
+               
+                // try {
+                //     //code...
+                // } catch (\Throwable $th) {
+                //     //throw $th;
+                // }
+            }
+
+            foreach ($schedules7 as $schedule1) {
+                # code...
+
+                
+
+                try {
+                    //code...
+
+                    $datax =[
+                        'name' => $schedule1->payment_plan->user->name,
+                        'title' => $schedule1->payment_plan->building_project->title,
+                        'location' => $schedule1->payment_plan->building_project->location,
+                        'description' => $schedule1->payment_plan->description,
+                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'payment_date' => $schedule1->payment_due_date,
+                        'expected_amount' => $schedule1->expected_amount,
+                        'due_date' => 'A days time'
+    
+                    ];
+    
+                    Mail::to($schedule1->payment_plan->user->email)
+                    ->send(new PaymentReminder($datax));
+
+
+                    return 'sent';
+    
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+                    return $th;
+                }
+
+               
+                // try {
+                //     //code...
+                // } catch (\Throwable $th) {
+                //     //throw $th;
+                // }
+            }
+
+            foreach ($schedules21 as $schedule1) {
+                # code...
+
+                
+
+                try {
+                    //code...
+
+                    $datax =[
+                        'name' => $schedule1->payment_plan->user->name,
+                        'title' => $schedule1->payment_plan->building_project->title,
+                        'location' => $schedule1->payment_plan->building_project->location,
+                        'description' => $schedule1->payment_plan->description,
+                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'payment_date' => $schedule1->payment_due_date,
+                        'expected_amount' => $schedule1->expected_amount,
+                        'due_date' => 'A days time'
+    
+                    ];
+    
+                    Mail::to($schedule1->payment_plan->user->email)
+                    ->send(new PaymentReminder($datax));
+
+
+                    return 'sent';
+    
+                } catch (\Throwable $th) {
+                    //throw $th;
+
+                    return $th;
+                }
+
+               
+                // try {
+                //     //code...
+                // } catch (\Throwable $th) {
+                //     //throw $th;
+                // }
+            }
+
+            foreach ($schedules30 as $schedule1) {
                 # code...
 
                 
