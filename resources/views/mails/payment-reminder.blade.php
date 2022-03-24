@@ -6,38 +6,42 @@
 </div>
 <h3> Hello {{$data['name']}}, </h3>
 
-<p>Please find below an invoice for your next due paym</p>
+<p>Please find below an invoice for your next due payment</p>
 
-<table>
+<table class="table">
     <tr>
         <td>Project Title: </td>
+        <td>=></td>
         <td>{{$data['title']}}</td>
     </tr>
     <tr>
         <td>Project Location: </td>
+        <td>=></td>
         <td>{{$data['location']}}</td>
     </tr>
     <tr>
         <td>Project Description: </td>
+        <td>=></td>
         <td>{{$data['description']}}</td>
     </tr>
     <tr>
         <td>Total Amount: </td>
+        <td>=></td>
         <td>N {{$data['total_amount']}} M</td>
     </tr>
-
     <tr>
         <td>Payment Date: </td>
+        <td>=></td>
         <td>{{$data['payment_date']}}</td>
     </tr>
-
     <tr>
         <td>Amount to be paid: </td>
+        <td>=></td>
         <td>N {{$data['expected_amount']}} M</td>
     </tr>
-
     <tr>
         <td>Due Date: </td>
+        <td>=></td>
         <td>{{'due_date'}}</td>
     </tr>  
 

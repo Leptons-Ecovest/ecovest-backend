@@ -225,7 +225,7 @@ class PaymentPlanController extends Controller
             
             // return $schedules1;
 
-            foreach ($schedules30 as $schedule1) {
+            foreach ($schedules1 as $schedule1) {
                 # code...
 
                 
