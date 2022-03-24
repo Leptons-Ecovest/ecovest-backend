@@ -280,7 +280,7 @@ class PaymentPlanController extends Controller
                         'total_amount' => $schedule1->payment_plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
-                        'due_date' => 'A days time'
+                        'due_date' => '3 days time'
     
                     ];
     
@@ -320,7 +320,7 @@ class PaymentPlanController extends Controller
                         'total_amount' => $schedule1->payment_plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
-                        'due_date' => 'A days time'
+                        'due_date' => '7 days time'
     
                     ];
     
@@ -360,7 +360,7 @@ class PaymentPlanController extends Controller
                         'total_amount' => $schedule1->payment_plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
-                        'due_date' => 'A days time'
+                        'due_date' => '21 days time'
     
                     ];
     
@@ -400,7 +400,7 @@ class PaymentPlanController extends Controller
                         'total_amount' => $schedule1->payment_plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
-                        'due_date' => 'A days time'
+                        'due_date' => '30 days time'
     
                     ];
     
