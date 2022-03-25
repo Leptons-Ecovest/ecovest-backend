@@ -154,6 +154,19 @@ class PaymentPlanController extends Controller
         # code...
 
 
+        // return $request->all();
+
+        if ($request->payment_plan_id) {
+            # code...
+
+            $paid_schedules = PaymentSchedule::with('payment_plan.building_project')
+            ->where('payment_plans_id', $request->payment_plan_id)->latest()->get();
+
+
+            return $paid_schedules;
+        }
+
+
         if ($request->user()->role == 'admin') {
             # code...
 
@@ -161,7 +174,9 @@ class PaymentPlanController extends Controller
 
             return $payment_plans;
 
-        }else {
+        }
+        
+        if($request->user()->role == 'user' && !$request->payment_plan_id){
             # code...
 
             try {
@@ -173,14 +188,22 @@ class PaymentPlanController extends Controller
 
                 $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->get();
 
-                // $unpaid_schedules = PaymentSchedule::where('payment_plans_id', $payment_plan->id)->where('amount_paid','0' )->get();
+                $payment_plan_ids = $payment_plan->pluck('id');
 
+                $unpaid_schedules = PaymentSchedule::with('payment_plan.building_project')
+                ->whereIn('payment_plans_id', $payment_plan_ids)
+                ->where('amount_paid','0' )
+                ->orderBy('payment_due_date', 'asc')->get();
 
-
+                $paid_schedules = PaymentSchedule::with('payment_plan.building_project')
+                ->whereIn('payment_plans_id', $payment_plan_ids)
+                ->where('amount_paid','!=','0' )->latest()->get();
+                
 
                 return response()->json([
                     'payment_plan' => $payment_plan,
-                    // 'unpaid_schedules' => $unpaid_schedules
+                    'unpaid_schedules' => $unpaid_schedules[0],
+                    'paid_schedules' => $paid_schedules
 
                 ]);
             } catch (\Throwable $th) {
