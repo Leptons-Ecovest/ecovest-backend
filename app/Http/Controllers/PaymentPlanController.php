@@ -202,7 +202,7 @@ class PaymentPlanController extends Controller
 
                 return response()->json([
                     'payment_plan' => $payment_plan,
-                    'unpaid_schedules' => $unpaid_schedules[0],
+                    'unpaid_schedules' => $unpaid_schedules[0]??[],
                     'paid_schedules' => $paid_schedules
 
                 ]);
