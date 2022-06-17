@@ -195,10 +195,11 @@ class PaymentPlanController extends Controller
                 ->where('amount_paid','0' )
                 ->orderBy('payment_due_date', 'asc')->get();
 
-                $unpaid_schedules_notify = PaymentSchedule::whereIn('payment_plans_id', $payment_plan_ids)
+                $payment_schedules = PaymentSchedule::with('payment_plan.building_project')
+                ->whereIn('payment_plans_id', $payment_plan_ids)
                 ->orderBy('payment_due_date', 'asc')->get();
 
-                $unpaid_schedules_notify_list = PaymentSchedule::where('payment_plans_id', $unpaid_schedules_notify[0]->payment_plans_id)->get();
+                $unpaid_schedules_notify_list = PaymentSchedule::where('payment_plans_id', $payment_schedules[0]->payment_plans_id)->get();
 
 
 
@@ -211,6 +212,7 @@ class PaymentPlanController extends Controller
                     'payment_plan' => $payment_plan,
                     'unpaid_schedules' => $unpaid_schedules[0]??[],
                     'paid_schedules' => $paid_schedules,
+                    'payment_schedules' => $payment_schedules,
                     'unpaid_schedules_notify_list' => $unpaid_schedules_notify_list
 
                 ]);
