@@ -95,6 +95,10 @@ Route::post('/send_reminders', [PaymentPlanController::class, 'send_reminders'])
 
 Route::get('/send_letter', [OfferLetterController::class, 'send_letter']);
 
+Route::post('/send_batch', [OfferLetterController::class, 'send_batch']);
+
+
+
 
 
 

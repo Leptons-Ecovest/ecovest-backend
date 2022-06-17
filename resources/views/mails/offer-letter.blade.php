@@ -1,6 +1,6 @@
 @component('mail::message')
 
-<p>HELLO CHIEF</p>
+<p>HELLO {{$data['name']}}</p>
 <p>Welcome On Board!</p> 
 <p>Thank you for joining the Leptons Ecovest Family. We are glad to see that your home meets you</p>
 <p>You are almost done!</p>

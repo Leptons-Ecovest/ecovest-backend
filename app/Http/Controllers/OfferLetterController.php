@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\OfferLetterEmail;
 
+use App\Models\User;
+
 class OfferLetterController extends Controller
 {
     //
@@ -42,4 +44,45 @@ class OfferLetterController extends Controller
 
 
     }
+
+    public function send_batch(Request $request)
+    {
+        # code...
+
+        $user_ids = $request->ids;
+
+        // return $user_ids;
+
+        for ($i=0; $i < count($user_ids); $i++) { 
+            # code...
+            try {
+                //code...
+
+                $user = User::find($user_ids[$i]);
+
+                $datax = [
+                    'name' => $user->name
+                ];
+
+
+                $sent = Mail::to($user->email)
+                ->send(new OfferLetterEmail($datax));
+        
+        
+                // return $sent;
+
+
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
+            }
+        }
+
+
+
+
+    }
+
+
 }
