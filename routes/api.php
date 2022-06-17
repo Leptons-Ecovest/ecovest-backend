@@ -15,11 +15,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PaymentScheduleController;
 use App\Http\Controllers\NotificationController;
-
-
-
-
-
+use App\Http\Controllers\OfferLetterController;
 
 
 /*
@@ -95,6 +91,9 @@ Route::post('/profiles', [UserProfileController::class, 'update_profile'])->midd
 Route::post('/update_payment_plan', [PaymentScheduleController::class, 'update_payment_plan'])->middleware('auth:sanctum');
 
 Route::post('/send_reminders', [PaymentPlanController::class, 'send_reminders']);
+
+
+Route::get('/send_letter', [OfferLetterController::class, 'send_letter']);
 
 
 
