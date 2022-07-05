@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Model\ProgressReport;
+use App\Models\ProgressReport;
 
 use App\Modles\ProgressReportAsset;
 
@@ -17,25 +17,26 @@ class ProgressReportController extends Controller
     public function progress_report(Request $request)
     {
 
-        return $request->assets;
 
-        try {
-            //code...
-            foreach ($request->assets as $uploadedFile) {
-                # code...
-                $filename = time().$uploadedFile->getClientOriginalName();
+        // try {
+        //     //code...
+        //     foreach ($request->assets as $uploadedFile) {
+        //         # code...
 
-                Storage::disk('local')->putFileAs(
-                  'files/'.$filename,
-                  $uploadedFile,
-                  $filename
-                );
-            }
-        } catch (\Throwable $th) {
-            //throw $th;
+        //         $filename = time().$uploadedFile->getClientOriginalName();
 
-            return $th;
-        }
+        //         Storage::disk('local')->putFileAs(
+        //           'files/'.$filename,
+        //           $uploadedFile,
+        //           $filename
+        //         );
+
+        //     }
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+
+        //     return $th;
+        // }
 
 
         $payment_plan_data = PaymentPlan::with('user')->with('building_project', $request->building_project_id)->first();
@@ -61,7 +62,22 @@ class ProgressReportController extends Controller
 // media_url
 // status
 
-        
-        return 123;
+    }
+
+    public function get_reports(Request $request)
+    {
+        # code...
+
+        try {
+            //code...
+            $reports = ProgressReport::where('subscriber_id', $request->user()->id)->with('assets')->get();
+    
+            return $reports;
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return $th;
+        }
+
     }
 }
