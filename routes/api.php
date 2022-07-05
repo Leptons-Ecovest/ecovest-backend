@@ -16,6 +16,9 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PaymentScheduleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OfferLetterController;
+use App\Http\Controllers\ProgressReportController;
+
+
 
 
 /*
@@ -96,6 +99,8 @@ Route::post('/send_reminders', [PaymentPlanController::class, 'send_reminders'])
 Route::get('/send_letter', [OfferLetterController::class, 'send_letter']);
 
 Route::post('/send_batch', [OfferLetterController::class, 'send_batch']);
+
+Route::post('/progress_report', [ProgressReportController::class, 'progress_report']);
 
 
 
