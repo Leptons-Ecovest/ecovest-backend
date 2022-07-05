@@ -27,13 +27,13 @@ class ProgressReportController extends Controller
         try {
             //code...
 
-            $payment_plan_data = PaymentPlan::with('user')->where('building_project_id', $request->building_project_id)->first();
+            $payment_plan_data = PaymentPlan::with('user')->where('id', $request->payment_plan_id)->first();
 
 
             $report = ProgressReport::create([
     
                 'payment_plan_id' => $payment_plan_data->id,
-                'subscriber_id' => $request->user()->id,
+                'subscriber_id' => $payment_plan_data->user_id,
                 'reporter_id' => 10001,
                 'description_work' => $request->description,
                 'issues' => $request->issues,
@@ -81,9 +81,10 @@ class ProgressReportController extends Controller
     {
         # code...
 
+
         try {
             //code...
-            $reports = ProgressReport::where('subscriber_id', $request->user()->id)->with('assets')->with('payment_plan.building_project')->get();
+            $reports = ProgressReport::where('payment_plan_id', $request->payment_plan_id)->with('assets')->with('subscribers')->with('payment_plan.building_project')->latest()->get();
     
             return $reports;
 

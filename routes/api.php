@@ -101,7 +101,7 @@ Route::post('/send_batch', [OfferLetterController::class, 'send_batch']);
 
 Route::post('/progress_report', [ProgressReportController::class, 'progress_report'])->middleware('auth:sanctum');
 
-Route::get('/progress_report', [ProgressReportController::class, 'get_reports'])->middleware('auth:sanctum');
+Route::post('/get_reports', [ProgressReportController::class, 'get_reports'])->middleware('auth:sanctum');
 
 
 

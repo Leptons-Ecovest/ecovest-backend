@@ -26,5 +26,12 @@ class ProgressReport extends Model
         return $this->belongsTo('App\Models\PaymentPlan', 'payment_plan_id', 'id');
     }
 
+    public function subscribers()
+    {
+            
+
+        return $this->belongsTo('App\Models\User', 'subscriber_id', 'id');
+    }
+
 
 }
