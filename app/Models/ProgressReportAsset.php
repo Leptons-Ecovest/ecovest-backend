@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProgressReportAsset extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

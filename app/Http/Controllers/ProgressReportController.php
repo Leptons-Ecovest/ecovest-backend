@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Models\ProgressReport;
 
-use App\Modles\ProgressReportAsset;
+use App\Models\PaymentPlan;
+
+use App\Models\ProgressReportAsset;
 
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Http\UploadedFile;
 
 class ProgressReportController extends Controller
 {
@@ -18,49 +22,58 @@ class ProgressReportController extends Controller
     {
 
 
-        // try {
-        //     //code...
-        //     foreach ($request->assets as $uploadedFile) {
-        //         # code...
+        // return $request->all();
 
-        //         $filename = time().$uploadedFile->getClientOriginalName();
+        try {
+            //code...
 
-        //         Storage::disk('local')->putFileAs(
-        //           'files/'.$filename,
-        //           $uploadedFile,
-        //           $filename
-        //         );
-
-        //     }
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-
-        //     return $th;
-        // }
+            $payment_plan_data = PaymentPlan::with('user')->where('building_project_id', $request->building_project_id)->first();
 
 
-        $payment_plan_data = PaymentPlan::with('user')->with('building_project', $request->building_project_id)->first();
+            $report = ProgressReport::create([
+    
+                'payment_plan_id' => $payment_plan_data->id,
+                'subscriber_id' => $request->user()->id,
+                'reporter_id' => 10001,
+                'description_work' => $request->description,
+                'issues' => $request->issues,
+                'stage' => $request->stage,
+                'percentage_completion' => $request->percent,
+                
+            ]);
 
 
-        $report = ProgressReport::create([
+            foreach ($request->assets as $uploadedFile) {
+                # code...
 
-            'payment_plan_id' => $payment_plan_data->id,
-            'subscriber_id' => $request->user()->id,
-            'reporter_id' => 10001,
-            'description_work' => $request->description,
-            'issues' => $request->issues,
-            'stage' => $request->stage,
-            'percentage_completion' => $request->percent,
             
-        ]);
+                $new_name = rand().".". $uploadedFile->getClientOriginalExtension();
+                $file1 = $uploadedFile->move(public_path('report_assets'), $new_name);
+
+                $re = ProgressReportAsset::create([
+                    'progress_report_id' => $report->id,
+                    'media_type' => 'image',
+                    'media_url' => config('app.url').'report_assets/'.$new_name,
+                    'status' => 'active',
+                ]);
+
+            }
+
+            // return $report;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return $th;
+        }
 
 
 
 
-// progress_report_id
-// media_type
-// media_url
-// status
+
+
+
+
 
     }
 
@@ -70,9 +83,10 @@ class ProgressReportController extends Controller
 
         try {
             //code...
-            $reports = ProgressReport::where('subscriber_id', $request->user()->id)->with('assets')->get();
+            $reports = ProgressReport::where('subscriber_id', $request->user()->id)->with('assets')->with('payment_plan.building_project')->get();
     
             return $reports;
+
         } catch (\Throwable $th) {
             //throw $th;
 
