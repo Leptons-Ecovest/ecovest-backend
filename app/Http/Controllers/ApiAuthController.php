@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\Welcome;
 
+use App\Mail\OfferLetterEmail;
+
 use App\Mail\EmailVerification;
 
 use Auth;
@@ -52,7 +54,7 @@ class ApiAuthController extends Controller
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                // 'username' => $validatedData['username'],
+                'role' => 'user',
                 'usercode' => $regCode,
                 // 'sponsors_id' => $validatedData['referrer_code'],
                 'password' => Hash::make($validatedData['password']),
@@ -106,7 +108,7 @@ class ApiAuthController extends Controller
 
                 
             Mail::to($user->email)
-            ->send(new Welcome($datax));
+            ->send(new OfferLetterEmail($datax));
 
 
 

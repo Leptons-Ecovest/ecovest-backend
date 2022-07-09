@@ -30,9 +30,9 @@ Download Floor Plans
 Download Design
 @endcomponent
 
-<p>info@leptonsmulticoncept.net | +=234 701 111 1629</p>
+<p>info@leptonsmulticoncept.net | + 234 701 111 1629</p>
  
-<p>2021 Leptons Multiconcept Ltd. All Rights Reserved.</p>
+<p>2022 Leptons Multiconcept Ltd. All Rights Reserved.</p>
 
 <p>4, Kolo S Close, Kado Estate, Abuja.</p>
 

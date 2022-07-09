@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentScheduleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OfferLetterController;
 use App\Http\Controllers\ProgressReportController;
+use App\Http\Controllers\PaymentStageController;
 
 
 
@@ -103,10 +104,7 @@ Route::post('/progress_report', [ProgressReportController::class, 'progress_repo
 
 Route::post('/get_reports', [ProgressReportController::class, 'get_reports'])->middleware('auth:sanctum');
 
+Route::post('/create_payment_stage', [PaymentStageController::class, 'create_payment_stage']);
 
-
-
-
-
-
+Route::post('/payment_plan_stages', [PaymentStageController::class, 'payment_plan_stages']);
 
