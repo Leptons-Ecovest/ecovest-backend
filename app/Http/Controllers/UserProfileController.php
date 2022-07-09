@@ -8,6 +8,7 @@ use App\Models\UserProfile;
 
 use App\Models\User;
 
+use Illuminate\Support\Facades\Hash;
 
 
 class UserProfileController extends Controller
@@ -116,6 +117,44 @@ class UserProfileController extends Controller
             return $users;
         }
 
+    }
+
+    public function add_new_user(Request $request)
+    {
+
+        $regCode = "LEP" .rand(11100,999999);
+
+        $otp = rand(111111,999999);
+       
+
+        try {
+            //code...
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => 'user',
+                'usercode' => $regCode,
+                'otp' => $otp,
+                // 'sponsors_id' => $validatedData['referrer_code'],
+                'password' => Hash::make($otp),
+            ]);
+            
+            
+            return $user;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
+    }
+
+    public function user_data(Request $request)
+    {
+        # code...
+
+        $user = User::find($request->user_id);
+
+        return $user;
     }
 
 

@@ -86,6 +86,10 @@ Route::put('/tickets', [TicketController::class, 'update_ticket'])->middleware('
 
 Route::get('/users', [UserProfileController::class, 'users'])->middleware('auth:sanctum');
 
+Route::post('/user_data', [UserProfileController::class, 'user_data'])->middleware('auth:sanctum');
+
+Route::post('/add_new_user', [UserProfileController::class, 'add_new_user'])->middleware('auth:sanctum');
+
 Route::get('/notifications', [NotificationController::class, 'notifications'])->middleware('auth:sanctum');
 
 Route::get('/profiles', [UserProfileController::class, 'get_profiles'])->middleware('auth:sanctum');
