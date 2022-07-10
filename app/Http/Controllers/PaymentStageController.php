@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\PaymentStage;
 
+use App\Models\PaymentPlan;
+
 use Carbon\Carbon;
 
 class PaymentStageController extends Controller
@@ -37,8 +39,10 @@ class PaymentStageController extends Controller
 
         $bboundary_date = Carbon::parse($aboundary_date)->addMonths($month_unit);
 
+        $payment_plan = PaymentPlan::find($request->payment_plan_id);
 
-        PaymentStage::where('user_id', $request->user_id)->where('payment_plans_id', $request->payment_plan_id)->delete();
+
+        PaymentStage::where('user_id', $payment_plan->user_id)->where('payment_plans_id', $request->payment_plan_id)->delete();
         // return $bboundary_date;
 
 
@@ -52,7 +56,7 @@ class PaymentStageController extends Controller
                 
                         //code...
                         PaymentStage::create([
-                            'user_id' => $request->user_id,
+                            'user_id' => $payment_plan->user_id,
                             'payment_plans_id' => $request->payment_plan_id,
                             'stage' => $i,
                             'percent' => $unit_percent,
