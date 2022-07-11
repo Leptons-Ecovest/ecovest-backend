@@ -67,20 +67,20 @@ class PaymentPlanController extends Controller
             $month_no = 3;
 
 
-            for ($i=0; $i < count($payment_units) ; $i++) { 
-                # code...
+            // for ($i=0; $i < count($payment_units) ; $i++) { 
+            //     # code...
 
     
-                $payment_schedule = PaymentSchedule::create([
-                    'payment_plans_id' => $payment_plan->id,
-                    'payment_due_date' => Carbon::parse($payment_plan->start_date)->addMonth($month_no),
-                    'expected_amount' => $payment_units[$i],
-                    'amount_paid' => 0,
-                ]);
+            //     $payment_schedule = PaymentSchedule::create([
+            //         'payment_plans_id' => $payment_plan->id,
+            //         'payment_due_date' => Carbon::parse($payment_plan->start_date)->addMonth($month_no),
+            //         'expected_amount' => $payment_units[$i],
+            //         'amount_paid' => 0,
+            //     ]);
 
-                $month_no += 3;
+            //     $month_no += 3;
     
-            }
+            // }
 
             Notification::create([
                 'user_id' => $user->id,
@@ -122,15 +122,6 @@ class PaymentPlanController extends Controller
         }
 
 
-
-        // $expected_amount = $request->total_amount / $request->month_duration;
-
-
-
-        // 20
-        // 20
-        // 20
-        // 10
 
         try {
      
