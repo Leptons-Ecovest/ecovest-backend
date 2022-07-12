@@ -102,4 +102,30 @@ class PaymentStageController extends Controller
 
         return $payment_stages;
     }
+
+
+    public function update_payment_stage(Request $request)
+    {
+        
+        
+        try {
+            //code...
+            $payment_stage = PaymentStage::where('id', $request->id)->update([
+                'percent' => $request->percent,
+                'amount' => $request->amount,
+                'aboundary_date' => Carbon::parse($request->aboundary),
+                'bboundary_date' => Carbon::parse($request->bboundary),
+                'payment_plans_id' => $request->payment_plan_id,
+            ]);
+    
+            return $payment_stage;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return $th;
+        }
+
+
+    }
 }

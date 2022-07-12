@@ -112,3 +112,5 @@ Route::post('/create_payment_stage', [PaymentStageController::class, 'create_pay
 
 Route::post('/payment_plan_stages', [PaymentStageController::class, 'payment_plan_stages']);
 
+Route::post('/update_payment_stage', [PaymentStageController::class, 'update_payment_stage']);
+
