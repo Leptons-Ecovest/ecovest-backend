@@ -22,12 +22,12 @@
     <li>Instagram</li>
 </ul>
 
-@component('mail::button', ['url' => {{$data['offer_letter_link']}}])
-Download Floor Plans
+@component('mail::button', ['url' => $data['offer_letter_link'] ])
+Download Offer Letter
 @endcomponent
 
-@component('mail::button', ['url' => {{$data['br']}}])
-Download Design
+@component('mail::button', ['url' => $data['brochure_link'] ])
+Download Brochure
 @endcomponent
 
 <p>info@leptonsmulticoncept.net | + 234 701 111 1629</p>

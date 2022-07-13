@@ -10,6 +10,8 @@ use App\Mail\OfferLetterEmail;
 
 use App\Models\User;
 
+use App\Models\PaymentPlan;
+
 class OfferLetterController extends Controller
 {
     //
@@ -18,7 +20,7 @@ class OfferLetterController extends Controller
     public function send_letter(Request $request)
     {
         # code...
-
+        $payment_plan = PaymentPlan::with('user')->find($request->payment_plans_id);
 
             try {
                 //code...
@@ -39,12 +41,13 @@ class OfferLetterController extends Controller
                 $datax = [
                     'brochure_link' => config('app.url').'brochures/'.$new_name1,
                     'offer_letter_link' => config('app.url').'offer_letters/'.$new_name2,
+                    'name' => $payment_plan->user->name
                    
                     
                 ];
 
 
-                $sent = Mail::to($request->user_email)
+                $sent = Mail::to('victorasuquob@gmail.com')
                 ->send(new OfferLetterEmail($datax));
         
         
