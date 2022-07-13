@@ -19,15 +19,32 @@ class OfferLetterController extends Controller
     {
         # code...
 
-        // for ($i=0; $i < ; $i++) { 
-        //     # code...
-        // }
+
             try {
                 //code...
-                $datax = [];
+
+                $brochure = $request->file('brochure');
+                $offer_letter = $request->file('offer_letter');
+
+                $new_name1 = rand().".".$brochure->getClientOriginalExtension();
+                $new_name2 = rand().".".$offer_letter->getClientOriginalExtension();
+
+                $brochure->move(public_path('brochures'), $new_name1);
+                $offer_letter->move(public_path('offer_letters'), $new_name2);
+    
+                // $avatar = User::where('id',$request->user()->id)->update([
+                //     'avatar' => config('app.url').'avatars/'.$new_name
+                // ]);
+
+                $datax = [
+                    'brochure_link' => config('app.url').'brochures/'.$new_name1,
+                    'offer_letter_link' => config('app.url').'offer_letters/'.$new_name2,
+                   
+                    
+                ];
 
 
-                $sent = Mail::to($request->email)
+                $sent = Mail::to($request->user_email)
                 ->send(new OfferLetterEmail($datax));
         
         

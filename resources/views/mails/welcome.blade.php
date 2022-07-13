@@ -4,19 +4,23 @@
 
 <p>
     Hi, {{ $data['name'] }} <br>
-    Congratulations. Welcome to Leptons. <br>
+    Congratulations. Welcome to Leptons Ecovest. <br>
 
 </p>
 
 <p>
-    <u>Follow the steps below to get started</u>
+    
+    <h6>Email:</h6>
+
+    <h6>{{$data['email']}}</h6>
+
+    <h6>Password:</h6>
+
+    <h6>{{$data['otp']}}</h6>
+    
 </p>
 
-<ol>
-    <li>Update your profile</li>
-    <li>Subscribe to a package</li>
-    <li>Share your affiliate link</li>
-</ol>
+
 
 {{-- @component('mail::button', ['url' => ''])
 Button Text

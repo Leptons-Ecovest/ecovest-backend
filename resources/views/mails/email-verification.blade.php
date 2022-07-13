@@ -3,11 +3,13 @@
 <h3> Hello {{$data['name']}}, </h3>
 
 <p>
-    Welcome to Leptons, use the OTP below to verify your email.
+    Welcome to Leptons Ecovest, use the link below to verify your email.
 </p>
   
     
-<h3> {{$data['otp']}} </h3>
+@component('mail::button', ['url' => 'https://app.leptonsecovest.com/#/verify/'.{{$data['otp']}}])
+Verify Email
+@endcomponent
 
 <p>
     If you have any complaints please contact our support.

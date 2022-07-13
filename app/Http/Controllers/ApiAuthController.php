@@ -108,7 +108,7 @@ class ApiAuthController extends Controller
 
                 
             Mail::to($user->email)
-            ->send(new OfferLetterEmail($datax));
+            ->send(new Welcome($datax));
 
 
 

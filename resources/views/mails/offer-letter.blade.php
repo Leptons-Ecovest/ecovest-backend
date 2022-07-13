@@ -22,11 +22,11 @@
     <li>Instagram</li>
 </ul>
 
-@component('mail::button', ['url' => config('app.url').'attachments/attachment2.pdf'])
+@component('mail::button', ['url' => {{$data['offer_letter_link']}}])
 Download Floor Plans
 @endcomponent
 
-@component('mail::button', ['url' => config('app.url').'attachments/attachment1.pdf'])
+@component('mail::button', ['url' => {{$data['br']}}])
 Download Design
 @endcomponent
 

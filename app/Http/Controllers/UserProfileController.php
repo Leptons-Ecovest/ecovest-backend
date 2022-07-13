@@ -8,6 +8,10 @@ use App\Models\UserProfile;
 
 use App\Models\User;
 
+use App\Mail\Welcome;
+
+use App\Mail\EmailVerification;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -138,6 +142,31 @@ class UserProfileController extends Controller
                 // 'sponsors_id' => $validatedData['referrer_code'],
                 'password' => Hash::make($otp),
             ]);
+
+
+            $datax = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'otp' => $user->otp,
+                'password' => $user->otp
+            ];
+
+
+            try {
+                //code...
+                Mail::to($user->email)
+                ->send(new Welcome($datax));
+    
+    
+    
+                Mail::to($user->email)
+                ->send(new EmailVerification($datax));
+
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+
+            
             
             
             return $user;
