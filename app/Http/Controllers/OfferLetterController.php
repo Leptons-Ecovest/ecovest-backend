@@ -47,7 +47,7 @@ class OfferLetterController extends Controller
                 ];
 
 
-                $sent = Mail::to('adams.cosmas@gmail.com')
+                $sent = Mail::to($payment_plan->user->email)
                 ->send(new OfferLetterEmail($datax));
         
         
