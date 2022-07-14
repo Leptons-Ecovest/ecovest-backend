@@ -179,7 +179,7 @@ class ApiAuthController extends Controller
         try {
             //code...
 
-            $user = User::where('id', $request->user()->id)->where('otp', $request->otp)->first();
+            $user = User::where('otp', $request->otp)->first();
 
             if ($user) {
 

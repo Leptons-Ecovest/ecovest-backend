@@ -50,7 +50,7 @@ Route::post('/package', [PackageController::class, 'package']);
 
 Route::post('/payment_callback', [PaymentController::class, 'callback'])->middleware('auth:sanctum');
 
-Route::post('/verify_otp', [ApiAuthController::class, 'verify_otp'])->middleware('auth:sanctum');
+Route::post('/verify_otp', [ApiAuthController::class, 'verify_otp']);
 
 Route::get('/get_faqs', [FAQController::class, 'get_faqs']);
 
