@@ -8,6 +8,8 @@ use App\Models\UserProfile;
 
 use App\Models\User;
 
+use Illuminate\Support\Facades\Mail;
+
 use App\Mail\Welcome;
 
 use App\Mail\EmailVerification;
@@ -144,15 +146,17 @@ class UserProfileController extends Controller
             ]);
 
 
-            $datax = [
-                'name' => $user->name,
-                'email' => $user->email,
-                'otp' => $user->otp,
-                'password' => $user->otp
-            ];
-
-
+            
+            
             try {
+
+                $datax = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'otp' => $user->otp,
+                    'password' => $user->otp
+                ];
+
                 //code...
                 Mail::to($user->email)
                 ->send(new Welcome($datax));
@@ -164,6 +168,8 @@ class UserProfileController extends Controller
 
             } catch (\Throwable $th) {
                 //throw $th;
+
+                return $th;
             }
 
             

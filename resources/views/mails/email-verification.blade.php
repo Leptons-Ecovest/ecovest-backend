@@ -1,19 +1,19 @@
 @component('mail::message')
 
-<h3> Hello {{$data['name']}}, </h3>
+<h1> Hello {{$data['name']}}, </h1>
 
-<p>
+<h1>
     Welcome to Leptons Ecovest, use the link below to verify your email.
-</p>
+</h1>
   
     
-@component('mail::button', ['url' => 'https://app.leptonsecovest.com/#/verify/'.{{$data['otp']}}])
+@component('mail::button', ['url' => 'https://app.leptonsecovest.com/#/verify/'.$data['otp']])
 Verify Email
 @endcomponent
 
-<p>
+<h1>
     If you have any complaints please contact our support.
-</p>
+</h1>
     
 
 {{-- @component('mail::button', ['url' => ''])

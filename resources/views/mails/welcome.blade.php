@@ -1,24 +1,33 @@
 @component('mail::message')
 
-<h3></h3>
 
-<p>
-    Hi, {{ $data['name'] }} <br>
-    Congratulations. Welcome to Leptons Ecovest. <br>
 
-</p>
+<h1>
+    Hi, {{ $data['name'] }}
+</h1>
 
-<p>
+<h1>
+    Congratulations. Welcome to Leptons Ecovest.
+</h1>
+
+<h1>
+    Email:
+</h1>
     
-    <h6>Email:</h6>
+<h1>
+    {{$data['email']}}
+</h1>
 
-    <h6>{{$data['email']}}</h6>
+<h1>
+    Password:
+</h1>
 
-    <h6>Password:</h6>
+<h1>
+    {{$data['otp']}}
+</h1>
 
-    <h6>{{$data['otp']}}</h6>
     
-</p>
+
 
 
 
