@@ -22,14 +22,18 @@
     <li>Instagram</li>
 </ul>
 
+<a href="{{$data['offer_letter_link']}}" download>
 @component('mail::button', ['url' => $data['offer_letter_link'] ])
-<a href="{{$data['offer_letter_link']}}" download="">Download Offer Letter</a>
-
+Download Offer Letter
 @endcomponent
+</a>
 
+
+<a href="{{$data['offer_letter_link']}}" download>
 @component('mail::button', ['url' => $data['brochure_link'] ])
-<a href="{{$data['offer_letter_link']}}" download="">Download Brochure</a>
+Download Brochure
 @endcomponent
+</a>
 
 <p>info@leptonsmulticoncept.net | + 234 701 111 1629</p>
  
