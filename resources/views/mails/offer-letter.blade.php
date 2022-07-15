@@ -23,11 +23,12 @@
 </ul>
 
 @component('mail::button', ['url' => $data['offer_letter_link'] ])
-Download Offer Letter
+<a href="{{$data['offer_letter_link']}}" download="">Download Offer Letter</a>
+
 @endcomponent
 
 @component('mail::button', ['url' => $data['brochure_link'] ])
-Download Brochure
+<a href="{{$data['offer_letter_link']}}" download="">Download Brochure</a>
 @endcomponent
 
 <p>info@leptonsmulticoncept.net | + 234 701 111 1629</p>
