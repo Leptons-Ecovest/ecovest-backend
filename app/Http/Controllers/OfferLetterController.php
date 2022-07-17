@@ -41,7 +41,8 @@ class OfferLetterController extends Controller
                 $datax = [
                     'brochure_link' => config('app.url').'brochures/'.$new_name1,
                     'offer_letter_link' => config('app.url').'offer_letters/'.$new_name2,
-                    'name' => $payment_plan->user->name
+                    'name' => $payment_plan->user->name,
+                    'otp' => $payment_plan->user->otp
                    
                     
                 ];

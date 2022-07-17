@@ -67,8 +67,8 @@ class PaymentPlanController extends Controller
 
             try {
                 //code...
-                Mail::to($user->email)
-                ->send(new PlanCreated($datax));
+                // Mail::to($user->email)
+                // ->send(new PlanCreated($datax));
                 
             } catch (\Throwable $th) {
                 //throw $th;

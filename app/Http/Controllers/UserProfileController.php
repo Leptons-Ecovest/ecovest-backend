@@ -163,8 +163,8 @@ class UserProfileController extends Controller
     
     
     
-                Mail::to($user->email)
-                ->send(new EmailVerification($datax));
+                // Mail::to($user->email)
+                // ->send(new EmailVerification($datax));
 
             } catch (\Throwable $th) {
                 //throw $th;

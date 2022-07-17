@@ -30,7 +30,7 @@ class OfferLetterEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.offer-letter',[
+        return $this->view('mails.offer',[
             'data' => $this->data
         ]);
     }

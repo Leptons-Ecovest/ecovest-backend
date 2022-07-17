@@ -28,9 +28,16 @@ class Welcome extends Mailable
      *
      * @return $this
      */
+    // public function build()
+    // {
+    //     return $this->markdown('mails.welcome',[
+    //         'data' => $this->data
+    //     ]);
+    // }
+
     public function build()
     {
-        return $this->markdown('mails.welcome',[
+        return $this->view('mails.congratulations',[
             'data' => $this->data
         ]);
     }
