@@ -231,7 +231,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                   <td align="center" height="60" style="height:60px;">
                   <![endif]-->
                     
-                      <a href="app.leptonsecovet.com" style="font-family:Quando, Arial, Helvetica, sans-serif;font-size:18px;line-height:28px;font-weight:400;font-style:normal;color:rgb(255, 255, 255);text-decoration:none;letter-spacing:0px;padding:16px 34px;display:inline-block;text-align:right;"><span>Login</span></a>
+                      <a href="https://app.leptonsecovest.com" style="font-family:Quando, Arial, Helvetica, sans-serif;font-size:18px;line-height:28px;font-weight:400;font-style:normal;color:rgb(255, 255, 255);text-decoration:none;letter-spacing:0px;padding:16px 34px;display:inline-block;text-align:right;"><span>Login</span></a>
                     
                   <!--[if (gte mso 9)|(IE)]>
                   </td>
