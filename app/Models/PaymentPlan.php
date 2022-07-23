@@ -28,4 +28,9 @@ class PaymentPlan extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function stages()
+    {
+        return $this->hasMany('App\Models\PaymentStage', 'payment_plans_id', 'id');
+    }
 }

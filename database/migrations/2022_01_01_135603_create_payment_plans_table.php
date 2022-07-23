@@ -19,6 +19,7 @@ class CreatePaymentPlansTable extends Migration
             $table->bigInteger('building_project_id')->unsigned();
             $table->date('start_date');
             $table->integer('duration');
+            $table->integer('percent_completion')->default(0);
             $table->date('end_date');
             $table->string('status')->default('active');
             $table->string('description')->nullable();

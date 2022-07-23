@@ -114,58 +114,66 @@ class PaymentPlanController extends Controller
         if ($request->user()->role == 'admin') {
             # code...
 
-            $payment_plans = PaymentPlan::with('building_project')->with('payment_schedules')->with('user')->get();
+            $payment_plans = PaymentPlan::with('building_project')->with('payment_schedules')->with('stages')->with('user')->get();
 
             return $payment_plans;
 
         }
-        
-        if($request->user()->role == 'user' && !$request->payment_plan_id){
+
+        if ($request->user()->role == 'user') {
             # code...
 
-            try {
-                //code...
-                
-                    // return $request->user();
+            $payment_plans = PaymentPlan::with('stages')->with('building_project')->where('user_id', $request->user()->id)->latest()->get();
 
-                // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
-
-                $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->get();
-
-                $payment_plan_ids = $payment_plan->pluck('id');
-
-                $unpaid_schedules = PaymentSchedule::with('payment_plan.building_project')
-                ->whereIn('payment_plans_id', $payment_plan_ids)
-                ->where('amount_paid','0' )
-                ->orderBy('payment_due_date', 'asc')->get();
-
-                $payment_schedules = PaymentSchedule::with('payment_plan.building_project')
-                ->whereIn('payment_plans_id', $payment_plan_ids)
-                ->orderBy('payment_due_date', 'asc')->get();
-
-                $unpaid_schedules_notify_list = PaymentSchedule::where('payment_plans_id', $payment_schedules[0]->payment_plans_id)->get();
-
-
-
-                $paid_schedules = PaymentSchedule::with('payment_plan.building_project')
-                ->whereIn('payment_plans_id', $payment_plan_ids)
-                ->where('amount_paid','!=','0' )->latest()->get();
-                
-
-                return response()->json([
-                    'payment_plan' => $payment_plan,
-                    'unpaid_schedules' => $unpaid_schedules[0]??[],
-                    'paid_schedules' => $paid_schedules,
-                    'payment_schedules' => $payment_schedules,
-                    'unpaid_schedules_notify_list' => $unpaid_schedules_notify_list
-
-                ]);
-            } catch (\Throwable $th) {
-                //throw $th;
-
-                return $th;
-            }
+            return $payment_plans;
         }
+        
+        // if($request->user()->role == 'user' && !$request->payment_plan_id){
+        //     # code...
+
+        //     try {
+        //         //code...
+                
+        //             // return $request->user();
+
+        //         // $payment_plan = PaymentPlan::with('payment_schedules')->find($request->payment_plan_id);
+
+        //         $payment_plan = PaymentPlan::with('building_project')->with('payment_schedules')->where('user_id', $request->user()->id)->get();
+
+        //         $payment_plan_ids = $payment_plan->pluck('id');
+
+        //         $unpaid_schedules = PaymentSchedule::with('payment_plan.building_project')
+        //         ->whereIn('payment_plans_id', $payment_plan_ids)
+        //         ->where('amount_paid','0' )
+        //         ->orderBy('payment_due_date', 'asc')->get();
+
+        //         $payment_schedules = PaymentSchedule::with('payment_plan.building_project')
+        //         ->whereIn('payment_plans_id', $payment_plan_ids)
+        //         ->orderBy('payment_due_date', 'asc')->get();
+
+        //         $unpaid_schedules_notify_list = PaymentSchedule::where('payment_plans_id', $payment_schedules[0]->payment_plans_id)->get();
+
+
+
+        //         $paid_schedules = PaymentSchedule::with('payment_plan.building_project')
+        //         ->whereIn('payment_plans_id', $payment_plan_ids)
+        //         ->where('amount_paid','!=','0' )->latest()->get();
+                
+
+        //         return response()->json([
+        //             'payment_plan' => $payment_plan,
+        //             'unpaid_schedules' => $unpaid_schedules[0]??[],
+        //             'paid_schedules' => $paid_schedules,
+        //             'payment_schedules' => $payment_schedules,
+        //             'unpaid_schedules_notify_list' => $unpaid_schedules_notify_list
+
+        //         ]);
+        //     } catch (\Throwable $th) {
+        //         //throw $th;
+
+        //         return $th;
+        //     }
+        // }
 
 
 
