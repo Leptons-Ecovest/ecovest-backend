@@ -98,6 +98,16 @@ class PaymentStageController extends Controller
     {
         # code...
 
+        if ($request->user_id) {
+            # code...
+
+            $payment_stages = PaymentStage::where('user_id', $request->user_id)->get();
+
+            return $payment_stages;
+
+
+        }
+
         $payment_stages = PaymentStage::where('payment_plans_id', $request->payment_plan_id)->get();
 
         return $payment_stages;

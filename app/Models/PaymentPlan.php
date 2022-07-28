@@ -31,6 +31,6 @@ class PaymentPlan extends Model
 
     public function stages()
     {
-        return $this->hasMany('App\Models\PaymentStage', 'payment_plans_id', 'id');
+        return $this->hasMany('App\Models\PaymentStage', 'payment_plans_id', 'id')->latest();
     }
 }
