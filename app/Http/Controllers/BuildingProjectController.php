@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\BuildingProject;
 
+use App\Models\BuildingProjectAsset;
+
+
 class BuildingProjectController extends Controller
 {
     //
@@ -30,7 +33,11 @@ class BuildingProjectController extends Controller
     {
         # code...
 
-        $doc = $request->file('featured_image');
+        // return $request->all();
+
+        try {
+            //code...
+            $doc = $request->file('featured_image');
         $new_name = rand().".".$doc->getClientOriginalExtension();
         $file1 = $doc->move(public_path('featured_images'), $new_name);
 
@@ -48,10 +55,52 @@ class BuildingProjectController extends Controller
             'featured_image' => config('app.url').'featured_images/'.$new_name
         ]);
 
+
+        // return $building_project;
+
+
+
+        foreach ($request->floor_plans as $floor_plan) {
+            # code...
+
+        
+            $new_name = rand().".". $floor_plan->getClientOriginalExtension();
+            $file1 = $floor_plan->move(public_path('floor_plans'), $new_name);
+
+            $re = BuildingProjectAsset::create([
+                'building_project_id' => $building_project->id,
+                'media_type' => 'floor plans',
+                'media_url' => config('app.url').'floor_plans/'.$new_name,
+                'status' => 'active',
+            ]);
+
+        }
+
+        foreach ($request->project3ds as $project3d) {
+            # code...
+
+        
+            $new_name = rand().".". $project3d->getClientOriginalExtension();
+            $file1 = $project3d->move(public_path('project3ds'), $new_name);
+
+            $re = BuildingProjectAsset::create([
+                'building_project_id' => $building_project->id,
+                'media_type' => 'project 3d',
+                'media_url' => config('app.url').'project3ds/'.$new_name,
+                'status' => 'active',
+            ]);
+
+        }
+
         return response()->json([
             'building_project' => $building_project,
 
         ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return $th;
+        }
 
 
     }

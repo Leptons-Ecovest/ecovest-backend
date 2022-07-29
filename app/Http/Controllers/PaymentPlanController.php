@@ -103,11 +103,9 @@ class PaymentPlanController extends Controller
         if ($request->payment_plan_id) {
             # code...
 
-            $paid_schedules = PaymentSchedule::with('payment_plan.building_project')
-            ->where('payment_plans_id', $request->payment_plan_id)->latest()->get();
+            $payment_plan = PaymentPlan::where('id', $request->payment_plan_id)->with('building_project.assets')->with('stages')->with('user')->first();
 
-
-            return $paid_schedules;
+            return $payment_plan;
         }
 
 
