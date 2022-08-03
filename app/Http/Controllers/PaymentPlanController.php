@@ -61,17 +61,20 @@ class PaymentPlanController extends Controller
 
             $datax =[
                 'project_title' => $building_project->title,
+                'project_price' => $building_project->property_price,
                 'name' => $user->name
             ];
 
 
             try {
                 //code...
-                // Mail::to($user->email)
-                // ->send(new PlanCreated($datax));
+                Mail::to($user->email)
+                ->send(new PlanCreated($datax));
                 
             } catch (\Throwable $th) {
                 //throw $th;
+
+                return $th;
             }
 
 

@@ -17,13 +17,11 @@ class PlanCreated extends Mailable
      *
      * @return void
      */
-    public function __construct($data, $payments)
+    public function __construct($data)
     {
         //
 
         $this->data = $data;
-
-        $this->payments = $payments;
 
     }
 
@@ -36,7 +34,6 @@ class PlanCreated extends Mailable
     {
         return $this->markdown('mails.plan-created',[
             'data' => $this->data,
-            'payments' => $this->payments,
             
         ]);
     }
