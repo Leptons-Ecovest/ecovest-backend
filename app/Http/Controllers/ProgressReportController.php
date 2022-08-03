@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\UploadedFile;
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\ProjectProgressMail;
+
 class ProgressReportController extends Controller
 {
     //
@@ -27,7 +31,7 @@ class ProgressReportController extends Controller
         try {
             //code...
 
-            $payment_plan_data = PaymentPlan::with('user')->where('id', $request->payment_plan_id)->first();
+            $payment_plan_data = PaymentPlan::with('building_project')->with('user')->where('id', $request->payment_plan_id)->first();
 
 
             $report = ProgressReport::create([
@@ -57,6 +61,33 @@ class ProgressReportController extends Controller
                     'status' => 'active',
                 ]);
 
+            }
+
+            $assets = ProgressReportAsset::where('progress_report_id', $report->id)->get();
+
+            
+            $datax =[
+                'project_title' => $payment_plan_data->building_project->title,
+                'project_price' => $payment_plan_data->building_project->property_price,
+                'name' =>$payment_plan_data->user->name,
+                'description_work' => $request->description,
+                'issues' => $request->issues,
+                'stage' => $request->stage,
+                'percentage_completion' => $request->percent,
+                'assets' => $assets[0]['media_url']
+            ];
+
+
+            
+            try {
+                //code...
+                Mail::to($payment_plan_data->user->email)
+                ->send(new ProjectProgressMail($datax));
+                
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
             }
 
             // return $report;
