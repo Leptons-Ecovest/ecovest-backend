@@ -10,6 +10,10 @@ use App\Models\PaymentStage;
 
 use App\Models\PaymentPlan;
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\PaymentReceiptMail;
+
 class PaymentScheduleController extends Controller
 {
     //
@@ -39,6 +43,25 @@ class PaymentScheduleController extends Controller
             //     'payment_schedule_updatex' => $payment_schedule_updatex,
             //     'payment_plan_id'=> $request->payment_schedule_id
             // ];
+
+            $user_payment = PaymentStage::with('plan')->find($request->payment_schedule_id);
+
+            $datax =[
+
+            ];
+
+
+            
+            try {
+                //code...
+                Mail::to($user_payment->plan->user->email)
+                ->send(new PaymentReceiptMail($datax));
+                
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
+            }
 
             return $payment_schedule_update;
 

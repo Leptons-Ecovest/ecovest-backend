@@ -10,6 +10,10 @@ use App\Models\PaymentPlan;
 
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\PaymentReceiptMail;
+           
 class PaymentStageController extends Controller
 {
     //
@@ -120,13 +124,31 @@ class PaymentStageController extends Controller
         
         try {
             //code...
-            $payment_stage = PaymentStage::where('id', $request->id)->update([
+            $payment_stage = PaymentStage::with('plan')->where('id', $request->id)->update([
                 'percent' => $request->percent,
                 'amount' => $request->amount,
                 'aboundary_date' => Carbon::parse($request->aboundary),
                 'bboundary_date' => Carbon::parse($request->bboundary),
                 'payment_plans_id' => $request->payment_plan_id,
             ]);
+
+
+            $datax =[
+
+            ];
+
+
+            
+            try {
+                //code...
+                Mail::to($payment_stage->plan->user->email)
+                ->send(new PaymentReceiptMail($datax));
+                
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
+            }
     
             return $payment_stage;
 

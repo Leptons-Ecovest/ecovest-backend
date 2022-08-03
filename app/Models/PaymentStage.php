@@ -10,4 +10,13 @@ class PaymentStage extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
+    public function plan()
+    {
+        # code...
+
+
+        return $this->belongsTo('App\Models\PaymentPlan', 'payment_plans_id', 'id');
+    }
 }
