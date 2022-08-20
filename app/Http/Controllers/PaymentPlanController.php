@@ -68,6 +68,12 @@ class PaymentPlanController extends Controller
 
             try {
                 //code...
+
+                
+
+                Mail::to('verify@leptonsecovest.com')
+                ->send(new PlanCreated($datax));
+
                 Mail::to($user->email)
                 ->send(new PlanCreated($datax));
                 
@@ -119,7 +125,7 @@ class PaymentPlanController extends Controller
 
             return $payment_plans;
 
-        }
+        } 
 
         if ($request->user()->role == 'user') {
             # code...

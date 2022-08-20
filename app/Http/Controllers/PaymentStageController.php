@@ -68,7 +68,7 @@ class PaymentStageController extends Controller
                             'aboundary_date' => $aboundary_date,
                             'bboundary_date' => $bboundary_date,
                             'amount_remitted' => 0,
-                            'status' => 'active',
+                            'status' => 'unpaid',
                         ]);
 
                         // return $aboundary_date;
@@ -130,6 +130,7 @@ class PaymentStageController extends Controller
                 'aboundary_date' => Carbon::parse($request->aboundary),
                 'bboundary_date' => Carbon::parse($request->bboundary),
                 'payment_plans_id' => $request->payment_plan_id,
+                'status' => 'paid'
             ]);
 
 

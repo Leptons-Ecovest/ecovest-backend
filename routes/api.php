@@ -18,6 +18,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OfferLetterController;
 use App\Http\Controllers\ProgressReportController;
 use App\Http\Controllers\PaymentStageController;
+use App\Http\Controllers\PdfController;
+
 
 
 
@@ -115,4 +117,8 @@ Route::post('/create_payment_stage', [PaymentStageController::class, 'create_pay
 Route::post('/payment_plan_stages', [PaymentStageController::class, 'payment_plan_stages']);
 
 Route::post('/update_payment_stage', [PaymentStageController::class, 'update_payment_stage']);
+
+
+Route::get('/pdf', [PdfController::class, 'pdf']);
+
 
