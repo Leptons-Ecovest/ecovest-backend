@@ -192,7 +192,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                   <td align="center" width="34"></td>
                   <td align="center" height="60" style="height:60px;">
                   <![endif]-->
-                    
+                    {{$data}}
                       <a href="" style="font-family:'IBM Plex Sans Thai Looped',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:16px 34px 16px 34px;display:inline-block;" download><span>Download Receipt</span></a>
                     
                   <!--[if (gte mso 9)|(IE)]>
@@ -294,7 +294,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                     <tbody><tr>
                       <td align="center" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:24px;line-height:38px;font-weight:700;font-style:normal;color:rgb(168, 207, 69);text-decoration:none;letter-spacing:0px;">
                           
-                            <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">₦45,000,000.00</p></div>
+                            <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">₦{{$data['amount']}}</p></div>
                           
                       </td>
                     </tr>

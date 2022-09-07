@@ -158,6 +158,7 @@ class PaymentStageController extends Controller
                 
                 $datax =[
                     'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+                    'amount' => $request->amount
                 ];
 
 
