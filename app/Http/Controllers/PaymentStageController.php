@@ -13,6 +13,10 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 use App\Mail\PaymentReceiptMail;
+
+use PDF;
+
+use Illuminate\Support\Facades\Storage;
            
 class PaymentStageController extends Controller
 {
@@ -134,16 +138,33 @@ class PaymentStageController extends Controller
             ]);
 
 
-            $datax =[
-
-            ];
 
 
             
             try {
                 //code...
+
+
+
+                $file_name = rand(123, 1233);
+
+                $pdf = PDF::loadView('pdf.receipt', [
+                    'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+                ])->setPaper('a4', 'portrait');
+        
+        
+                Storage::put('public/receipts/'.$file_name.'.pdf', $pdf->output());
+        
+                
+                $datax =[
+                    'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+                ];
+
+
                 Mail::to($payment_stage->plan->user->email)
                 ->send(new PaymentReceiptMail($datax));
+
+                
                 
             } catch (\Throwable $th) {
                 //throw $th;

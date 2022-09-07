@@ -198,22 +198,22 @@ class PaymentPlanController extends Controller
      
             
 
-            $schedules30 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules30 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(30), now()->addDays(31) ])->get();
 
-            $schedules21 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules21 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(21), now()->addDays(22) ])->get();
 
-            $schedules14 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules14 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(14), now()->addDays(15) ])->get();
 
-            $schedules7 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules7 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(7), now()->addDays(8) ])->get();
 
-            $schedules3 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules3 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(3), now()->addDays(4) ])->get();
 
-            $schedules1 = PaymentSchedule::with('payment_plan.user')->with('payment_plan.building_project')->where('status', 'unpaid')
+            $schedules1 = PaymentStage::with('plan.user')->with('plan.building_project')->where('status', 'unpaid')
             ->whereBetween('payment_due_date', [now()->addDays(1), now()->addDays(2) ])->get();
             
                       
@@ -228,18 +228,18 @@ class PaymentPlanController extends Controller
                     //code...
 
                     $datax =[
-                        'name' => $schedule1->payment_plan->user->name,
-                        'title' => $schedule1->payment_plan->building_project->title,
-                        'location' => $schedule1->payment_plan->building_project->location,
-                        'description' => $schedule1->payment_plan->description,
-                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'name' => $schedule1->plan->user->name,
+                        'title' => $schedule1->plan->building_project->title,
+                        'location' => $schedule1->plan->building_project->location,
+                        'description' => $schedule1->plan->description,
+                        'total_amount' => $schedule1->plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
                         'due_date' => 'A days time'
     
                     ];
     
-                    Mail::to($schedule1->payment_plan->user->email)
+                    Mail::to($schedule1->plan->user->email)
                     ->send(new PaymentReminder($datax));
 
 
@@ -268,10 +268,10 @@ class PaymentPlanController extends Controller
                     //code...
 
                     $datax =[
-                        'name' => $schedule1->payment_plan->user->name,
-                        'title' => $schedule1->payment_plan->building_project->title,
-                        'location' => $schedule1->payment_plan->building_project->location,
-                        'description' => $schedule1->payment_plan->description,
+                        'name' => $schedule1->plan->user->name,
+                        'title' => $schedule1->plan->building_project->title,
+                        'location' => $schedule1->plan->building_project->location,
+                        'description' => $schedule1->plan->description,
                         'total_amount' => $schedule1->payment_plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
@@ -279,7 +279,7 @@ class PaymentPlanController extends Controller
     
                     ];
     
-                    Mail::to($schedule1->payment_plan->user->email)
+                    Mail::to($schedule1->plan->user->email)
                     ->send(new PaymentReminder($datax));
 
 
@@ -308,18 +308,18 @@ class PaymentPlanController extends Controller
                     //code...
 
                     $datax =[
-                        'name' => $schedule1->payment_plan->user->name,
-                        'title' => $schedule1->payment_plan->building_project->title,
-                        'location' => $schedule1->payment_plan->building_project->location,
-                        'description' => $schedule1->payment_plan->description,
-                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'name' => $schedule1->plan->user->name,
+                        'title' => $schedule1->plan->building_project->title,
+                        'location' => $schedule1->plan->building_project->location,
+                        'description' => $schedule1->plan->description,
+                        'total_amount' => $schedule1->plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
                         'due_date' => '7 days time'
     
                     ];
     
-                    Mail::to($schedule1->payment_plan->user->email)
+                    Mail::to($schedule1->plan->user->email)
                     ->send(new PaymentReminder($datax));
 
 
@@ -348,18 +348,18 @@ class PaymentPlanController extends Controller
                     //code...
 
                     $datax =[
-                        'name' => $schedule1->payment_plan->user->name,
-                        'title' => $schedule1->payment_plan->building_project->title,
-                        'location' => $schedule1->payment_plan->building_project->location,
-                        'description' => $schedule1->payment_plan->description,
-                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'name' => $schedule1->plan->user->name,
+                        'title' => $schedule1->plan->building_project->title,
+                        'location' => $schedule1->plan->building_project->location,
+                        'description' => $schedule1->plan->description,
+                        'total_amount' => $schedule1->plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
                         'due_date' => '21 days time'
     
                     ];
     
-                    Mail::to($schedule1->payment_plan->user->email)
+                    Mail::to($schedule1->plan->user->email)
                     ->send(new PaymentReminder($datax));
 
 
@@ -388,18 +388,18 @@ class PaymentPlanController extends Controller
                     //code...
 
                     $datax =[
-                        'name' => $schedule1->payment_plan->user->name,
-                        'title' => $schedule1->payment_plan->building_project->title,
-                        'location' => $schedule1->payment_plan->building_project->location,
-                        'description' => $schedule1->payment_plan->description,
-                        'total_amount' => $schedule1->payment_plan->total_amount,
+                        'name' => $schedule1->plan->user->name,
+                        'title' => $schedule1->plan->building_project->title,
+                        'location' => $schedule1->plan->building_project->location,
+                        'description' => $schedule1->plan->description,
+                        'total_amount' => $schedule1->plan->total_amount,
                         'payment_date' => $schedule1->payment_due_date,
                         'expected_amount' => $schedule1->expected_amount,
                         'due_date' => '30 days time'
     
                     ];
     
-                    Mail::to($schedule1->payment_plan->user->email)
+                    Mail::to($schedule1->plan->user->email)
                     ->send(new PaymentReminder($datax));
 
 

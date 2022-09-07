@@ -21,8 +21,14 @@ class PdfController extends Controller
             'we' => 'working',
         ])->setPaper('a4', 'portrait');
 
+        $file_name = rand(123, 1233);
 
-        return Storage::put('public/receipts/'.rand(123,1233).'.pdf', $pdf->output());
+        $file = Storage::put('public/receipts/'.$file_name.'.pdf', $pdf->output());
+
+        return config('app.url').'storage/receipts/'.$file_name.'.pdf';
+        
+
+
 
 
     }
