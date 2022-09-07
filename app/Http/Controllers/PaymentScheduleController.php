@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\PaymentReceiptMail;
 
+use PDF;
+
+use Illuminate\Support\Facades\Storage;
+
 class PaymentScheduleController extends Controller
 {
     //
@@ -46,9 +50,22 @@ class PaymentScheduleController extends Controller
 
             $user_payment = PaymentStage::with('plan')->find($request->payment_schedule_id);
 
-            $datax =[
 
+            $file_name = rand(123, 1233);
+
+            $pdf = PDF::loadView('pdf.receipt', [
+                'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+            ])->setPaper('a4', 'portrait');
+    
+    
+            Storage::put('public/receipts/'.$file_name.'.pdf', $pdf->output());
+    
+            
+            $datax =[
+                'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+                'amount' => $request->amount
             ];
+
 
 
             

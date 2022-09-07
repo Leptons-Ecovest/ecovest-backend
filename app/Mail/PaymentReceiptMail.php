@@ -31,7 +31,10 @@ class PaymentReceiptMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.payment-receipt',[
+        return $this
+        ->from('billing@leptonsecovest.com', 'Leptons')
+        ->subject('💵 Payment Receipt')
+        ->markdown('mails.payment-receipt',[
             'data' => $this->data,
             
         ]);

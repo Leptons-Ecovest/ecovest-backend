@@ -294,7 +294,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                     <tbody><tr>
                       <td align="center" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:24px;line-height:38px;font-weight:700;font-style:normal;color:rgb(168, 207, 69);text-decoration:none;letter-spacing:0px;">
                           
-                            <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">₦{{format_number($data['amount'])}}</p></div>
+                            <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">₦{{number_format($data['amount'])}}</p></div>
                           
                       </td>
                     </tr>
