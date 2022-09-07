@@ -193,7 +193,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                   <td align="center" height="60" style="height:60px;">
                   <![endif]-->
                     
-                      <a href="{{$data['url']}}" style="font-family:'IBM Plex Sans Thai Looped',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:16px 34px 16px 34px;display:inline-block;" download><span>Download Receipt</span></a>
+                      <a href="" style="font-family:'IBM Plex Sans Thai Looped',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:16px 34px 16px 34px;display:inline-block;" download><span>Download Receipt</span></a>
                     
                   <!--[if (gte mso 9)|(IE)]>
                   </td>
