@@ -32,7 +32,7 @@ class PaymentReceiptMail extends Mailable
     public function build()
     {
         return $this
-        ->from('billing@leptonsecovest.com', 'Leptons')
+        ->from('billing@leptonsecovest.com', 'Leptons Ecovest')
         ->subject('💵 Payment Receipt')
         ->markdown('mails.payment-receipt',[
             'data' => $this->data,
