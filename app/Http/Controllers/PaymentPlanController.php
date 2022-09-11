@@ -121,9 +121,17 @@ class PaymentPlanController extends Controller
         if ($request->user()->role == 'admin') {
             # code...
 
-            $payment_plans = PaymentPlan::with('building_project')->with('payment_schedules')->with('stages')->with('user')->get();
+            try {
+                //code...
+                $payment_plans = PaymentPlan::with(['building_project','payment_schedules','stages','user'])->latest()->get();
+    
+                return $payment_plans;
+            } catch (\Throwable $th) {
+                //throw $th;
 
-            return $payment_plans;
+                return $th;
+            }
+
 
         } 
 

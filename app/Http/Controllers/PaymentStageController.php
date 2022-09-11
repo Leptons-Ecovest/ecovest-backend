@@ -158,8 +158,11 @@ class PaymentStageController extends Controller
                 
                 $datax =[
                     'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
-                    'amount' => $request->amount
+                    'amount' => $request->amount,
+                    'name' => $payment_stage->plan->user->name
                 ];
+
+                // return $datax;
 
 
                 Mail::to($payment_stage->plan->user->email)

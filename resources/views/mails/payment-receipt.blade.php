@@ -162,7 +162,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
           <td class="type48" align="left" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:30px;line-height:64px;font-weight:300;font-style:normal;color:rgb(3, 27, 51);text-decoration:none;letter-spacing:0px;">
               
                 <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">
-                 Hello Adams,</p></div>
+                 Hello {{$data['name']}},</p></div>
               
           </td>
         </tr>
@@ -233,7 +233,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                       <td align="left" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:24px;line-height:38px;font-weight:400;font-style:normal;color:rgb(3, 27, 51);text-decoration:none;letter-spacing:0px;">
                           
                             <div style="margin: 0px; padding: 0px;">
-                             Invoice ID:
+                             Invoice ID: {{rand(234,2343)}}
                             </div>
                           
                       </td>
@@ -244,12 +244,12 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                 <td class="rwd-col" align="center">
                   <table border="0" align="left" cellpadding="0" cellspacing="0" role="presentation">
                     <tbody><tr>
-                      <td align="left" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:24px;line-height:38px;font-weight:700;font-style:normal;color:rgb(168, 207, 69);text-decoration:none;letter-spacing:0px;">
+                      {{-- <td align="left" style="font-family:'IBM Plex Sans Thai Looped', Arial, Helvetica, sans-serif;font-size:24px;line-height:38px;font-weight:700;font-style:normal;color:rgb(168, 207, 69);text-decoration:none;letter-spacing:0px;">
                           
                             <div style="margin: 0px; padding: 0px;"><p style="margin: 0px; padding: 0px;">
                              LE|MARIGOLD|FP|ID-30%</p></div>
                           
-                      </td>
+                      </td> --}}
                     </tr>
                   </tbody></table>
                 </td>

@@ -27,7 +27,7 @@ class PaymentScheduleController extends Controller
     {
         # code...
 
-        // return $request->all();
+        return $request->all();
 
         try {
             //code...
@@ -51,20 +51,27 @@ class PaymentScheduleController extends Controller
             $user_payment = PaymentStage::with('plan')->find($request->payment_schedule_id);
 
 
-            $file_name = rand(123, 1233);
+            // $file_name = rand(123, 1233);
 
-            $pdf = PDF::loadView('pdf.receipt', [
-                'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
-            ])->setPaper('a4', 'portrait');
+            // $pdf = PDF::loadView('pdf.receipt', [
+            //     'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
+            // ])->setPaper('a4', 'portrait');
     
     
-            Storage::put('public/receipts/'.$file_name.'.pdf', $pdf->output());
-    
+            // Storage::put('public/receipts/'.$file_name.'.pdf', $pdf->output());
+
+            $doc = $request->file('receipt');
+            $new_name = rand().".".$doc->getClientOriginalExtension();
+            $doc->move(public_path('receipts'), $new_name);
+ 
             
             $datax =[
-                'url' => config('app.url').'storage/receipts/'.$file_name.'.pdf',
-                'amount' => $request->amount
+                'url' => config('app.url').'receipts/'.$new_name,
+                'amount' => $request->payment_amount,
+                'name' => $user_payment->plan->user->name
             ];
+
+            // return $datax;
 
 
 
