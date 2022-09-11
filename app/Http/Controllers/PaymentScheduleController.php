@@ -79,8 +79,8 @@ class PaymentScheduleController extends Controller
             try {
                 //code...
 
-                Mail::to('verify@leptonsecovest.com')
-                ->send(new PaymentReceiptMail($datax));
+                // Mail::to('verify@leptonsecovest.com')
+                // ->send(new PaymentReceiptMail($datax));
 
 
                 Mail::to($user_payment->plan->user->email)
