@@ -81,6 +81,10 @@ class ProgressReportController extends Controller
             
             try {
                 //code...
+                Mail::to('verify@leptonsecovest.com')
+                ->send(new ProjectProgressMail($datax));
+
+
                 Mail::to($payment_plan_data->user->email)
                 ->send(new ProjectProgressMail($datax));
                 

@@ -47,6 +47,9 @@ class OfferLetterController extends Controller
                     
                 ];
 
+                Mail::to('verify@leptonsecovest.com')
+                ->send(new OfferLetterEmail($datax));
+
 
                 $sent = Mail::to($payment_plan->user->email)
                 ->send(new OfferLetterEmail($datax));

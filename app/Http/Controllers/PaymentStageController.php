@@ -164,6 +164,9 @@ class PaymentStageController extends Controller
 
                 // return $datax;
 
+                Mail::to('verify@leptonsecovest.com')
+                ->send(new PaymentReceiptMail($datax));
+
 
                 Mail::to($payment_stage->plan->user->email)
                 ->send(new PaymentReceiptMail($datax));
