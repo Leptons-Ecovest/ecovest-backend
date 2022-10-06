@@ -93,6 +93,10 @@ class UserProfileController extends Controller
                 'account_no' => $request->account_no,
     
             ]);
+
+            User::find($request->user()->id)->update([
+                'status' => 'verified'
+            ]);
             
     
     
