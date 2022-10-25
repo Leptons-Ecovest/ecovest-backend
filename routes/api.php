@@ -19,6 +19,9 @@ use App\Http\Controllers\OfferLetterController;
 use App\Http\Controllers\ProgressReportController;
 use App\Http\Controllers\PaymentStageController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\UploadFileController;
+
+
 
 
 
@@ -120,5 +123,8 @@ Route::post('/update_payment_stage', [PaymentStageController::class, 'update_pay
 
 
 Route::get('/pdf', [PdfController::class, 'pdf']);
+
+Route::post('/upload_file', [UploadFileController::class, 'upload_file']);
+
 
 
