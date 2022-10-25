@@ -15,7 +15,7 @@ class UploadFileController extends Controller
     {
         # code...
 
-        return $request()->all();
+        // return $request()->all();
 
         try {
             //code...
