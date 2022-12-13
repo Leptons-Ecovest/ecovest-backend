@@ -45,7 +45,18 @@ class PaymentStageController extends Controller
 
         // return $aboundary_date;
 
+
+        if ($month_unit<12) {
+            # code...
+        $bboundary_date = Carbon::parse($aboundary_date)->addDays($month_unit* 30);
+
+        }else{
+
         $bboundary_date = Carbon::parse($aboundary_date)->addMonths($month_unit);
+
+        }
+
+        // return $bboundary_date;
 
         $payment_plan = PaymentPlan::find($request->payment_plan_id);
 
@@ -81,7 +92,15 @@ class PaymentStageController extends Controller
                         $aboundary_date = $bboundary_date;
 
                         
-                        $bboundary_date = Carbon::parse($aboundary_date)->addMonth($month_unit);
+                        if ($month_unit<12) {
+                            # code...
+                        $bboundary_date = Carbon::parse($aboundary_date)->addDays($month_unit* 30);
+                
+                        }else{
+                
+                        $bboundary_date = Carbon::parse($aboundary_date)->addMonths($month_unit);
+                
+                        }
                         
                        
 

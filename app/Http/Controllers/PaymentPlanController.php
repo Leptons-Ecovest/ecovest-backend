@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\PaymentPlan;
-
-use App\Models\PaymentSchedule;
-
-use App\Models\BuildingProject;
+use Carbon\Carbon;
 
 use App\Models\User;
 
+use App\Mail\PlanCreated;
+
+use App\Models\PaymentPlan;
+
 use App\Models\Notification;
 
-use Carbon\Carbon;
+use App\Models\PaymentStage;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 use App\Mail\PaymentReminder;
 
-use App\Mail\PlanCreated;
+use App\Models\BuildingProject;
+
+use App\Models\PaymentSchedule;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentPlanController extends Controller
 {
@@ -108,6 +109,27 @@ class PaymentPlanController extends Controller
 
 
         // return $request->all();
+
+        if ($request->key) {
+            # code...
+            $query_key = $request->key;
+
+            $payment_plans = PaymentPlan::with(['building_project','payment_schedules','stages','user'])
+            ->orWhereHas('user', function($q) use($query_key){
+                $q->where('name', 'LIKE', "%$query_key%");
+                $q->where('email', 'LIKE', "%$query_key%");
+
+             })
+             ->orWhereHas('building_project', function($q) use($query_key){
+                $q->where('title', 'LIKE', "%$query_key%");
+                // $q->where('title', $query_key);
+             })
+            ->latest()->get();
+    
+            return $payment_plans;
+
+
+        }
 
         if ($request->payment_plan_id) {
             # code...
