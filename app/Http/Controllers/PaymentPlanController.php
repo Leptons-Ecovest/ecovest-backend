@@ -117,8 +117,11 @@ class PaymentPlanController extends Controller
             $payment_plans = PaymentPlan::with(['building_project','payment_schedules','stages','user'])
             ->orWhereHas('user', function($q) use($query_key){
                 $q->where('name', 'LIKE', "%$query_key%");
+ 
+             })
+             ->orWhereHas('user', function($q) use($query_key){
                 $q->where('email', 'LIKE', "%$query_key%");
-
+ 
              })
              ->orWhereHas('building_project', function($q) use($query_key){
                 $q->where('title', 'LIKE', "%$query_key%");
