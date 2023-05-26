@@ -196,7 +196,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
                 <td class="rwd-on-mobile" align="left" style="font-family:Roboto, Arial, Helvetica, sans-serif;font-size:16px;line-height:26px;font-weight:400;font-style:normal;color:rgb(168, 207, 69);text-decoration:none;letter-spacing:0px;padding:0px!important;">
                   
                     <div style="margin: 0px; padding: 0px;">
-                      <p style="margin: 0px; padding: 0px;"><strong>Price:</strong> ₦ {{number_format($data['project_price'], 2)}} Million</p></div>
+                      <p style="margin: 0px; padding: 0px;"><strong>Price:</strong> ₦ {{number_format($data['project_price'], 2)}}</p></div>
                   
                 </td>
               </tr>

@@ -23,6 +23,8 @@ use App\Models\BuildingProject;
 use App\Models\PaymentSchedule;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Log;
+
 class PaymentPlanController extends Controller
 {
     //
@@ -30,14 +32,14 @@ class PaymentPlanController extends Controller
     public function create_payment_plan(Request $request)
     {
         # code...
-
+        
         $project = BuildingProject::where('title', $request->building_project_title)->first();
 
         $user = User::where('email', $request->subscribers_email)->first();
 
         try {
             //code...
-
+            
             $building_project = BuildingProject::find($project->id);
 
 
@@ -46,13 +48,14 @@ class PaymentPlanController extends Controller
                 'user_id' => $user->id,
                 'building_project_id' => $project->id,
                 'start_date' => $request->start_date,
-                'duration' => $building_project->duration,
+                'duration' => $request->duration,
                 'end_date' => Carbon::parse($request->start_date)->addMonth($building_project->duration),
                 'description' => $request->description,
-                'total_amount' => $building_project->property_price,
+                'total_amount' => $request->total_amount,
                 'status' => 'active'
             ]);
 
+            
             Notification::create([
                 'user_id' => $user->id,
                 'title' => 'New Projected Created',
@@ -62,40 +65,35 @@ class PaymentPlanController extends Controller
 
             $datax = [
                 'project_title' => $building_project->title,
-                'project_price' => $building_project->property_price,
-                'name' => $user->name
+                'project_price' => $request->total_amount,
+                'name' => $user->name,
             ];
-
 
             try {
                 //code...
 
 
-
+                
                 Mail::to('verify@leptonsecovest.com')
                     ->send(new PlanCreated($datax));
-
                 Mail::to($user->email)
                     ->send(new PlanCreated($datax));
+                
             } catch (\Throwable $th) {
                 //throw $th;
-
+                Log::error($th);
                 return $th;
             }
 
 
             // return $payments;
 
-
-
         } catch (\Throwable $th) {
             //throw $th;
 
             return $th;
         }
-
-
-
+        
         return response()->json([
             'payment_plan' => $payment_plan,
 
